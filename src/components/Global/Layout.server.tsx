@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { useShopQuery, CacheLong, gql, Seo } from "@shopify/hydrogen";
+import { useShopQuery, CacheLong, gql, Seo, useSession } from "@shopify/hydrogen";
 
 import Header from "./Header.client";
 import Footer from "./Footer.client"
@@ -9,6 +9,7 @@ import React from "react";
  * A server component that defines a structure and organization of a page that can be used in different parts of the Hydrogen app
  */
 export function Layout({ children }) {
+  const {language} = useSession()
   const {
     data: { shop, menu },
   } = useShopQuery({
@@ -33,7 +34,7 @@ export function Layout({ children }) {
             Skip to content
           </a>
         </div>
-        <Header shop={shop} menu={menu} />
+        <Header shop={shop} menu={menu} language={language || 'en'} />
 
         <main role="main" id="mainContent" className="flex-grow">
           <Suspense fallback={null}>{children}</Suspense>

@@ -3,13 +3,13 @@ import { Drawer, useDrawer } from "../Drawer/Drawer.client";
 import { CartDetails } from "../Cart/CartDetails.client";
 import { IconAccount, IconSearch } from "../Elements/Icon";
 import { Input } from "../Elements/Input"
-import React from "react";
+import { LanguageDropdown } from "../Elements/Dropdown.client"
 
-export default function Header({ shop, menu }) {
+export default function Header({ shop, menu, language }) {
   const { pathname } = useUrl();
   const { isOpen, openDrawer, closeDrawer } = useDrawer();
 
-  const {country, locale, language} = useLocalization();
+  /* const {country, locale, language} = useLocalization(); */
 
   const isHome = pathname === "/";
   return (
@@ -65,10 +65,10 @@ export default function Header({ shop, menu }) {
           <CartBadge dark={isHome} />
         </button>
 
-        {/* Language */}
-        {/* <button onClick={() => ChangeLanguage('en')}>En</button>
-        <button onClick={() => ChangeLanguage('es')}>Es</button> */}
+        {/* Dropdown Language */}
+        <LanguageDropdown lng={language}/>
         
+        {/* Language */}
         <form action="/service/changelanguage" method="post">
           <label htmlFor="es">Es</label>
           <input type="radio" name="language" id="es" value="es"/>
@@ -80,14 +80,6 @@ export default function Header({ shop, menu }) {
     </>
   );
 }
-
-/* const ChangeLanguage = (lng) => {
-  let param = new URLSearchParams();
-  param.append('lng', 'en')
-  console.log(param.get('lng'))
-  
-  fetch('/service/changelanguage', {method: 'POST', body: param}).then(() => {console.log('cambio de idioma')})
-} */
 
 function IconBag() {
   return (
