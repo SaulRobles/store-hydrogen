@@ -4,8 +4,8 @@ export default defineConfig({
   shopify: {
     defaultCountryCode: 'US',
     defaultLanguageCode: 'EN',
-    storeDomain: Oxygen.env.SHOPIFY_STORE_DOMAIN,
-    storefrontToken: Oxygen.env.SHOPIFY_STOREFRONT_API_PUBLIC_TOKEN,
+    storeDomain: Oxygen.env.SHOPIFY_STORE_DOMAIN || 'solbeautyandcare-mx.myshopify.com',
+    storefrontToken: Oxygen.env.SHOPIFY_STOREFRONT_API_PUBLIC_TOKEN || '65640e6f21aaf5305ac02518d9793b1a',
     storefrontApiVersion: '2022-07',
   },
   session: CookieSessionStorage('__session', {
