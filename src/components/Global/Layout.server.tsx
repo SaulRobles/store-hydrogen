@@ -52,7 +52,7 @@ const SHOP_QUERY = gql`
       name
       description
     },
-    menu(handle: "main-menu") {
+    menu(handle: "menu_hydrogen") {
       items {
         title
         url

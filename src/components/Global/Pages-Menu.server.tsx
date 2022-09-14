@@ -5,28 +5,24 @@ import React from "react";
 
 export default function Pages_Menu() {
   const {
-    data: { collections },
+    data: { menu },
   } = useShopQuery({
     query: SHOP_QUERY,
     cache: CacheLong(),
   });
 
   return(
-    <Menu collection={collections}></Menu>
+    <Menu collection={menu}></Menu>
   )
 
 }
 
 const SHOP_QUERY = gql`
   query layout {
-    collections(first: 10) {
-      nodes {
-        title
-        onlineStoreUrl
-        image {
-          url
-          altText
-        }
+    menu(handle: "submenu-hydrogen") {
+      items {
+  	    title
+        url
       }
     }
   }
