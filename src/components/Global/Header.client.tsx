@@ -67,15 +67,7 @@ export default function Header({ shop, menu, language }) {
 
         {/* Dropdown Language */}
         <LanguageDropdown lng={language}/>
-        
-        {/* Language */}
-        <form action="/service/changelanguage" method="post">
-          <label htmlFor="es">Es</label>
-          <input type="radio" name="language" id="es" value="es"/>
-          <label htmlFor="en">En</label>
-          <input type="radio" name="language" id="en" value="en"/>
-          <button>Submit</button>
-        </form>
+    
       </header>
     </>
   );
