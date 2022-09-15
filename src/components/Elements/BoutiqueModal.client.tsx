@@ -1,6 +1,9 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
+import ReactPlayer from 'react-player';
+
+import { Carousel } from 'antd';
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -46,7 +49,7 @@ export default function BasicModal({boutique}) {
             <div>
               {/* Slider */}
               <div className='Boutique_Modal_Slider_Div'>
-                {/* <Slider {...settings}>
+                <Carousel slidesToShow={1}>
                   {boutique?.boutique?.gallery && boutique?.boutique?.gallery?.map((gallery, index) => {
                     return(
                       <div key={index} className='Boutique_Modal_Slider_Image'>
@@ -54,7 +57,7 @@ export default function BasicModal({boutique}) {
                       </div>
                     )
                   })}
-                </Slider> */}
+                </Carousel>
               </div>
               {/* Texto y enlace de la la boutique y su instagram */}
               <div>
@@ -77,6 +80,61 @@ export default function BasicModal({boutique}) {
               </div>
             }
           </div>
+        </Box>
+      </Modal>
+    </div>
+  );
+}
+
+const BoutiqueModalStyle = {
+  position: 'absolute' as 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  bgcolor: 'black',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+  width: "60rem",
+  height: "40rem"
+};
+
+export function MeasureModal({ data, lng }) {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  console.log(data)
+
+  const root = 'https://api-sai.solbeautyandcare.com/';
+
+  let title = `description_${lng}`
+  let img = `featured_img_${lng}`
+  let url = data[img]
+
+  /* console.log(img) */
+  console.log(data[img])
+
+  const videoRoot = 'https://www.youtube.com/watch?v='
+  let videoUrl = `url_${lng}`
+
+  return (
+    <div>
+      <div onClick={handleOpen} className='Measure_Card_Main_Div'>
+        <div className="Measure_Img_Div">
+          <img src={root + url} alt="" />
+          <span className="Measure_Card_Time">{data.length}</span>
+        </div>
+        <h2>{data[title]}</h2>
+      </div>
+
+      <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={BoutiqueModalStyle}>
+          <ReactPlayer url={videoRoot + data[videoUrl]} loop={true} volume={0} muted={true} width="100%" height="100%" controls={true}/>
         </Box>
       </Modal>
     </div>
