@@ -14,7 +14,6 @@ export async function api(
 
     if(request.method === 'POST') {
       let data = await request.formData()
-      console.log(data)
       let lng = data.get('language')
       await session.set('language', lng)
       return new Response('Cambio de idioma')

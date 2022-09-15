@@ -19,7 +19,6 @@ export default function Product({ product, childrens, isBundle, shop, lng }) {
     main_img_ref.current.src = e.target.src
   }
 
-  console.log(counter)
   if(!counter) {
     i18n.changeLanguage(lng)
     counter = true;
@@ -49,9 +48,6 @@ export default function Product({ product, childrens, isBundle, shop, lng }) {
             <div></div>
             {/* Description */}
             <span>Description</span> {/* Esto es un acordeon */}
-            <p>{t('title')}</p>
-            <Trans i18nKey="description.part1" />
-            <div>{t('description.part2')}</div>
             <div dangerouslySetInnerHTML={{__html: product.descriptionHtml}} />
           </div> 
           

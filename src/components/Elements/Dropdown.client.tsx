@@ -6,9 +6,6 @@ export const LanguageDropdown: React.FC = ({lng}) => {
   let language = lng === 'es' ? 'mx' : 'us'
 
   function changeSize(){
-    console.log("Hola")
-    console.log(dropDownRef.current)
-
     dropDownRef.current.classList.toggle('Dropdown_Active');
   }
 

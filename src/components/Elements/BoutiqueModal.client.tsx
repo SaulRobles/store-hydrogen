@@ -2,10 +2,6 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 
-/* import Slider from "react-slick"; */
-/* import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css"; */
-
 const style = {
   position: 'absolute' as 'absolute',
   top: '50%',

@@ -1,10 +1,6 @@
 import { Modal } from 'antd';
 import React, { useState } from 'react';
-import ReactPlayer from 'react-player'
-
-/* import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css"; */
+import ReactPlayer from 'react-player';
 
 const App: React.FC = ({influencer, index}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);

@@ -907,3 +907,52 @@
 .Dropdown_Active div{
   display: flex !important;
 }
+
+/* How to Measure Yourself */
+
+.Measure_Wrapped {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 5rem;
+}
+
+.Measure_Card_Main_Div {
+  width: 25rem;
+  margin: 1rem;
+  height: 20rem;
+  cursor: pointer;
+}
+
+.Measure_Card_Main_Div:hover {
+  box-shadow: 0 0 12px #0000001f;
+}
+
+.Measure_Card_Main_Div img {
+  box-shadow: 0 0 18px -5px #000000bf;
+}
+
+.Measure_Img_Div{
+  padding: 1rem;
+  position: relative;
+}
+
+.Measure_Card_Main_Div h2{
+  text-align: center;
+  margin: 1rem;
+  font-family: Hind,sans-serif;
+  text-transform: uppercase;
+  font-weight: 300;
+  line-height: 22px;
+}
+
+.Measure_Card_Time {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  color: white;
+  background: #00000085;
+  border-radius: 15px;
+  font-size: 1.5rem;
+  letter-spacing: .1rem;
+  font-weight: 600;
+}
