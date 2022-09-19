@@ -4,7 +4,7 @@ import banner_es from "../../assets/HowToMeasure/como_medirse_es.webp"
 import banner_en from "../../assets/HowToMeasure/How_to_measure_yourself_en.webp"
 let lngflag = false;
 import '../../i18n';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 export default function Measure({data, lng}){
   const [ t, i18n ] = useTranslation();

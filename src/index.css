@@ -956,3 +956,53 @@
   letter-spacing: .1rem;
   font-weight: 600;
 }
+
+/* Media And Press */
+
+.Media_Articles_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Media_Article_Main_Div {
+  display: flex;
+  align-items: center;
+  margin: 1rem auto;
+}
+
+.Media_Article_img {
+  width: 30rem;
+}
+
+.Media_Article_img img {
+  box-shadow: 0 0 14px -5px #000000bf;
+}
+
+.Media_Article_Information {
+  width: 40rem;
+  padding-left: 3rem;
+}
+
+.Media_Article_Title {
+  letter-spacing: 0.05rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 1.5rem;
+}
+
+.Media_Article_Button {
+  color: #fff;
+  letter-spacing: .05rem;
+  background: black;
+  border: 1px solid transparent;
+  border-radius: 2px;
+  padding: 0.5% 3%;
+  margin-top: 1rem;
+}
+
+.Media_Article_Button:hover {
+  color: #000;
+  background: white;
+  border: 1px solid black;
+}

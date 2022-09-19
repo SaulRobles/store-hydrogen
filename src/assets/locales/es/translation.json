@@ -1,13 +1,10 @@
 {
-  "title": "Bienvenido react utilizando react-i18next",
-  "description": {
-    "part1": "Para empezar, Edite <1>src/App.js</1> grabe y recargue.",
-    "part2": "Intercambie los idiomas entre ingles y español con los botones de arriba"
-  },
   "how_to_measure": {
     "title": "¿CÓMO MEDIRSE?"
   },
   "media_and_press": {
-    "title": "MEDIOS Y PRENSA"
+    "title": "MEDIOS Y PRENSA",
+    "article_button": "ABRIR ARTICULO",
+    "video_button": "VER VIDEO"
   }
 }

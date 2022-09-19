@@ -103,16 +103,12 @@ export function MeasureModal({ data, lng }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  console.log(data)
 
   const root = 'https://api-sai.solbeautyandcare.com/';
 
   let title = `description_${lng}`
   let img = `featured_img_${lng}`
   let url = data[img]
-
-  /* console.log(img) */
-  console.log(data[img])
 
   const videoRoot = 'https://www.youtube.com/watch?v='
   let videoUrl = `url_${lng}`
