@@ -6,5 +6,37 @@
     "title": "MEDIA AND PRESS",
     "article_button": "OPEN ARTICLE",
     "video_button": "WATCH VIDEO"
+  },
+  "footer": {
+    "rights": "Use of the products sold on this website is under the sole responsibility of the user Sol Beauty and Care ™ © 2021. All rights reserved.",
+    "first_column": {
+      "download": "DOWNLOAD",
+      "our_app": "OUR APP"
+    },
+    "second_column": {
+      "we_want_to_read_you": "WE WANT TO READ YOU",
+      "email": "E-MAIL:",
+      "message": "MESSAGE:",
+      "send": "SEND"
+    },
+    "three_column": {
+      "contact_us": "CONTACT US",
+      "office_hours": "Office hours",
+      "days": "Monday to Friday",
+      "phone": "Phone:"
+    },
+    "four_column": {
+      "help_center": "HELP CENTER:",
+      "our_products": "Our products",
+      "faqs": "Frequently asked questions",
+      "exchanges": "Exchanges",
+      "terms": "Terms and Conditions",
+      "privacy": "Privacy notice"
+    },
+    "five_column": {
+      "our_networks": "OUR NETWORKS",
+      "language": "LANGUAGE",
+      "country": "COUNTRY"
+    }
   }
 }

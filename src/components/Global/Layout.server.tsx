@@ -40,7 +40,7 @@ export function Layout({ children }) {
           <Suspense fallback={null}>{children}</Suspense>
         </main>
 
-        <Footer></Footer>
+        <Footer language={language || 'en'}></Footer>
       </div>
     </>
   );

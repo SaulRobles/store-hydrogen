@@ -9,7 +9,7 @@ import ClassicTemplate from "./ProductChildsTemplate.client"
 
 import { useTranslation, Trans } from 'react-i18next';
 
-let counter = false;
+let lngflag = false;
 
 export default function Product({ product, childrens, isBundle, shop, lng }) {
   const [ t, i18n ] = useTranslation();
@@ -19,9 +19,9 @@ export default function Product({ product, childrens, isBundle, shop, lng }) {
     main_img_ref.current.src = e.target.src
   }
 
-  if(!counter) {
+  if(!lngflag) {
     i18n.changeLanguage(lng)
-    counter = true;
+    lngflag = true;
   }
 
   return(
