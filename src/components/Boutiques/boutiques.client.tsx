@@ -1,5 +1,3 @@
-import React from "react";
-
 import Pagination from "../Elements/Pagination.client"
 
 import Modal from "../Elements/BoutiqueModal.client"

@@ -1,4 +1,3 @@
-import React from "react";
 import { fetchSync, useUrl, useSession } from "@shopify/hydrogen";
 import BoutiquesTemplate from "./boutiques.client"
 import {Suspense} from 'react'; 

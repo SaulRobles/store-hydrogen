@@ -39,7 +39,7 @@ const App: React.FC = ({influencer, index}) => {
         <h2>{influencer.influencer.profile?influencer.influencer.profile.nickname:''}</h2>
       </div>
       <Modal 
-        visible={isModalVisible} 
+        open={isModalVisible} 
         onOk={handleOk} 
         onCancel={handleCancel}
         centered={true}
