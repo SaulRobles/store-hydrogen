@@ -6,16 +6,21 @@ import Modal from "../Elements/AddProductModal.client"
 import { ProductOptionsProvider, AddToCartButton } from "@shopify/hydrogen";
 
 export default function Child({ product, isBundle, shop }) {
+  //console.log(product)
+
   const [information, setInformation] = React.useState({});
   const [qty, setQty] = React.useState({value: 1})
   let variant = {}
 
   function set_Variant() {
+    //console.log(information)
     let title = Object.values(information).join(' / ')
     let reverse_title = Object.values(information).reverse().join(' / ')
     product.variants.nodes.forEach((element) => {
       if(element.title === title || element.title === reverse_title) {
+        
         variant = element
+        //console.log(variant)
       }
     })
   }
@@ -23,6 +28,7 @@ export default function Child({ product, isBundle, shop }) {
   set_Variant()
 
   const option_button = (e) => {
+    //console.log(e)
     let parent;
     if(e.target.localName === "img") {
       e = e.target.offsetParent

@@ -1,52 +1,62 @@
-import React, {Suspense} from "react"
+import * as React from 'react';
+import Pagination from '@mui/material/Pagination';
 
 import Modal from "../Elements/Modal.client"
 import Banner from "../Elements/Banner.client"
 
-import Pagination from '@mui/material/Pagination';
+import {fetchSync} from '@shopify/hydrogen';
+import {Suspense} from 'react';
 
-export default function Influencer({pageUrl}) {
-  let [data, setData] = React.useState(null);
-  let [page, setPage] = React.useState(1);
+let lngflag = false;
+import '../../i18n';
+import { useTranslation } from 'react-i18next';
 
-  if(!data) {
-    console.log('no hay data')
-    getData(1);
-  } else {
-    console.log('hay data');
-    console.log(data)
+export default function Influencer({ lng, handle }) {
+  const [ t, i18n ] = useTranslation();
+  const [page, setPage] = React.useState(Number(handle));
+
+  if(!lngflag) {
+    i18n.changeLanguage(lng)
+    lngflag = true;
   }
 
-  async function getData(page: number){
-    try {
-      await fetch(`/service/getapidata`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({page, section: "influencers"}),
-      }).then(res => res.json()).then(json => setData(json));
-    } catch (error: any) {
-      return {error: error.toString()}
-    }
+  const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+
+  const listQuery = {
+    page: page || 1,
+    limit: 12,
+    search: '',
+    sort: 'asc'
   }
 
-  function pageChange(event, page) {
-    setPage(page)
-    getData(page)
-  }
+  const root = 'https://sys.sbc.mx/'
+  const api = 'api/v2/shop/influencer/list'
+  const params = '?'+new URLSearchParams(listQuery).toString();
+  const url = root + api
+
+  const {data} = fetchSync(url+params).json();
+
+  const totalPages = Math.ceil(data.total / data.per_page)
+
+  const banner = `https://storage.googleapis.com/shop-backend/shopify/influencers/banner_web_${lng}.mp4`
 
   return (
     <div>
-      <Banner src={"https://storage.googleapis.com/shop-backend/shopify/influencers/1920_es.mp4"}></Banner>
-      <div className="influencers_wrapper">
-        {data && data.items?.map((influencer, index) => {
-          return(<Modal key={index} influencer={influencer} index={index}></Modal>)
-        })}
+      <Banner src={banner} />
+      <div className='influencers_title_wrapper'>
+        <h1 className='influencers_title'>{t("influencers.title")}</h1>
+        <span className='influencers_subtitle'>{t("influencers.subtitle")}</span>
       </div>
-      <div className="influencers_Pagination_Div">
-        <Pagination count={Math.ceil(data?.total / 12) || 5} page={page} color="secondary" onChange={pageChange} />
+      <hr className='hr_divider'/>
+      <Suspense fallback="Loading...">
+        <div className="influencers_wrapper">
+          {data && data.items?.map((influencer, index) => (<Modal key={index} influencer={influencer} index={index}></Modal>))}
+        </div>
+      </Suspense>
+      <div className='influencers_Pagination_Div'>
+        <Pagination count={totalPages} page={page} color="secondary" showFirstButton showLastButton onChange={handleChange} />
       </div>
     </div>
   )

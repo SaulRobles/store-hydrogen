@@ -16,10 +16,17 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal({boutique}) {
+export default function BasicModal({boutique, lng}) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  let descriptionLanguage = []
+  if(boutique?.boutique?.profile?.description){
+    descriptionLanguage = boutique?.boutique?.profile?.description.split('|')
+  }
+
+  //console.log(boutique)
 
   const settings = {
     dots: true,
@@ -61,10 +68,35 @@ export default function BasicModal({boutique}) {
               </div>
               {/* Texto y enlace de la la boutique y su instagram */}
               <div>
-                {/* Ciudad - Encargado */}
+                {/* Ciudad - Encargado - Horarios - Telefonos */}
                 <div className='Boutique_Modal_City_Owner'>
                   <h2>{boutique?.boutique?.profile?.city}</h2>
                   <h3>{boutique?.boutique?.name}</h3>
+                  {boutique?.boutique?.profile?.description ?  
+                    <div className='Boutique_Modal_Information_Div'>
+                      <img className='Boutique_Modal_Information_Div_Img' src="https://cdn.shopify.com/s/files/1/0300/5926/6141/files/icons8-open-sign-50.png?v=1666291094" alt="" />
+                      {lng === 'en' ? <span>{descriptionLanguage[0]}</span> : <span>{descriptionLanguage[1]}</span>}
+                    </div> : 
+                    <></>
+                  }
+                  {boutique?.boutique?.profile?.phone ? 
+                    <div className='Boutique_Modal_Information_Div'>
+                      <img className='Boutique_Modal_Information_Div_Img' src="https://cdn.shopify.com/s/files/1/0300/5926/6141/files/icons8-phone-50.png?v=1666285721" alt="" />
+                      <span>{boutique?.boutique?.profile?.phone}</span>
+                    </div> : <></>
+                  }
+                  {boutique?.boutique?.profile?.cellphone ?
+                    <div className='Boutique_Modal_Information_Div'>
+                      <img className='Boutique_Modal_Information_Div_Img' src="https://cdn.shopify.com/s/files/1/0300/5926/6141/files/icons8-phone-50.png?v=1666285721" alt="" />
+                      <span>{boutique?.boutique?.profile?.cellphone}</span>
+                    </div> : <></>
+                  }
+                  {boutique?.boutique?.profile?.whatsapp ? 
+                    <div className='Boutique_Modal_Information_Div_Img' className='Boutique_Modal_Information_Div'>
+                      <img src="https://cdn.shopify.com/s/files/1/0300/5926/6141/files/icons8-whatsapp-24.png?v=1666285726" alt="" />
+                      <span>{boutique?.boutique?.profile?.whatsapp}</span>
+                    </div> : <></>
+                  }
                 </div>
                 {/* Enlace a la pagina de instagram */}
                 <div className='Boutique_Modal_Instagram_Div'>
@@ -104,7 +136,7 @@ export function MeasureModal({ data, lng }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const root = 'https://api-sai.solbeautyandcare.com/';
+  const root = 'https://sys.sbc.mx/';
 
   let title = `description_${lng}`
   let img = `featured_img_${lng}`

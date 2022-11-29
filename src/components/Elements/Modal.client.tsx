@@ -29,26 +29,6 @@ export default function BasicModal({influencer, index}) {
         {influencer.influencer.gallery && influencer.influencer.gallery[0].type == "video" ? <ReactPlayer url={influencer.influencer.gallery[0].url} loop={true} volume={0} muted={true} width="100%" height="100%" controls={true}/> : <img src={influencer.influencer.gallery[0].url} alt={`Imagen de ${influencer.influencer.profile?influencer.influencer.profile.nickname:''}`} />}
         <h2>{influencer.influencer.profile?influencer.influencer.profile.nickname:''}</h2>
       </div>
-<<<<<<< Updated upstream
-      <Modal 
-        open={isModalVisible} 
-        onOk={handleOk} 
-        onCancel={handleCancel}
-        centered={true}
-        bodyStyle={styles}
-        width="100rem"
-        footer={null}>
-        <div className='Influencer_Slider_Div'>
-          {/* <Slider {...settings}>
-            {influencer.influencer.gallery && influencer.influencer.gallery.map((gallery, index) => {
-              return(
-                <div key={index} className='Influencer_Slider_Card'>
-                  {gallery.type === 'video' ? <ReactPlayer className="Influencer_Slider_item" url={gallery.url} loop={true} volume={0} muted={true} width="100%" height="100%" controls={true} /> : <img className='Influencer_Slider_item' src={gallery.url} alt="" />}
-                </div>
-              )
-            })}
-          </Slider> */}
-=======
       <Modal
         open={open}
         onClose={handleClose}
@@ -58,7 +38,6 @@ export default function BasicModal({influencer, index}) {
         <Box sx={style}>
         <div>
           <Carousel data={influencer}></Carousel>
->>>>>>> Stashed changes
         </div>
         </Box>
       </Modal>

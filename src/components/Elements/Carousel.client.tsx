@@ -10,6 +10,24 @@ const contentStyle: React.CSSProperties = {
   background: '#364d79',
 };
 
+export const BannerCarousel = ({banners}) => {
+
+  return(
+    <Carousel 
+    /* autoplay={true} */
+    draggable={true}
+    arrows={true}
+    >
+      {banners.map((src, index) => (
+        <div key={index}>
+          <img style={{width: "100%", height: "60rem"}} src={src}/>
+        </div>
+      ))}
+    </Carousel>
+  )
+}
+
+/* Main Carousel */
 const App: React.FC = ({images, main, params, multipleProducts}) => {
   let products;
   if(multipleProducts) products = [...images]

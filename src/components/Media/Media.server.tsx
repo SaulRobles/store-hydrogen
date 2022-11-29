@@ -5,7 +5,7 @@ import {Suspense} from 'react';
 export default function MediaQuery() {
   let {language} = useSession()
 
-  const root = 'https://api-sai.solbeautyandcare.com/';
+  const root = 'https://sys.sbc.mx/';
   const api = 'api/v2/shop/blog/news';
   const url = root + api;
 
