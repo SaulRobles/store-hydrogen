@@ -3,25 +3,30 @@ import React from 'react';
 import {fetchSync} from '@shopify/hydrogen';
 
 export default function CollectionCards({ collection }){
-  /* const [page, setPage] = React.useState(1);
+  const [page, setPage] = React.useState(1);
   
   const root = "https://solbeautyandcare-mx.myshopify.com/"
   const api = "admin/products/count.json"
-  const url = root + api */
+  const url = root + api
   
   let products
-  /* let collectionCount; */
+  let collectionCount;
   if(collection) {
     products = collection.products 
-    /* collectionCount = collection.id.split("gid://shopify/Collection/")
+    collectionCount = collection.id.split("gid://shopify/Collection/")
     const params = `?status=active&collection_id=${collectionCount[1] || 1}`
+    const CORS = "https://cors-anywhere.herokuapp.com/"
     console.log(url + params)
-    const data = fetchSync(url+params).json();
+    /* const data = fetchSync(url+params).json();
     console.log(data) */
+    fetch(url+params)
+    .then(res => console.log(res))
+    /* .then(json => console.log(json)) */
+    .catch(err => console.log(err))
   }
 
-  /* console.log(collection)
-  console.log(collectionCount[1]) */
+  console.log(collection)
+  console.log(collectionCount[1])
 
   return(
     <div className="product_wrapper">
