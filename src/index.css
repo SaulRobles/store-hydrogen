@@ -31,6 +31,14 @@
   text-align: center;
 }
 
+.page_title {
+  text-align: center;
+  margin: 2rem;
+  font-size: 3rem;
+  font-weight: bold;
+  font-family: Hind,sans-serif;
+}
+
 /* Separator */
 
 .hr_divider {
@@ -54,6 +62,16 @@
   height: 25rem !important;
 }
 
+.newRel_Img_Div {
+  padding: 1rem;
+  display: flex !important;
+  justify-content: center;
+}
+
+.newRel_Img_Div img{
+  height: 25rem !important;
+}
+
 .Carousel_Product_Text {
   display: flex;
   flex-direction: column;
@@ -68,10 +86,11 @@
   color: white;
   height: 80px;
   align-items: center;
+  padding-right: 2rem;
 }
 
 .header_nav a {
-  margin: 10px
+  margin: 5px
 }
 
 /* Footer */
@@ -196,11 +215,37 @@
   cursor: pointer;
 }
 
+/* Main Menu */
+
+.menu_active {
+  color: #e0c091;
+  cursor: pointer;
+  border-bottom: 3px solid #e0c091;
+}
+
+.menu_low_arrow {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-bottom: 0px solid #e0c091;
+  transition: all 0.5s;
+}
+
+.menu_low_arrow:hover {
+  border-bottom: 3px solid #e0c091;
+}
+
 /* Sub Menu */
 
 .sub_menu {
   display: flex;
   justify-content: center;
+  font-family: Hind,sans-serif;
+  font-size: 14px;
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: 0em;
 }
 
 .sub_menu a{
@@ -209,21 +254,45 @@
 
 /* Products Cards */
 
-.card_wrapper {
+.product_wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  margin-left: 20%;
-  margin-right: 20%;
+  justify-content: flex-start;
+  margin: 2rem 20%;
+}
+
+.card_image {
+  opacity: 1;
+  transition: all 0.3s;
+}
+
+.card_image:hover {
+  opacity: 0;
 }
 
 .card_container {
-  margin: 20px;
+  margin: 10px;
+  width: 16rem;
+  position: relative;
 }
 
 .card_container img {
   width: 300px;
   height: auto;
+}
+
+.card_text {
+  font-family: Hind,sans-serif;
+  font-size: 14px;
+  text-align: center;
+  padding: 1rem;
+  padding-bottom: 0;
+  transition: all 0.3s;
+}
+
+.card_text:hover {
+  color: #e0c091;
+  cursor: pointer;
 }
 
 .card_information {
@@ -528,6 +597,7 @@
   display: flex;
   margin-bottom: 5rem;
   justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
 .AboutUs_card-wrap {
@@ -596,6 +666,10 @@
 }
 
 /* Contact */
+
+.Contact_inputs_placeholder::placeholder {
+  color: black;
+}
 
 .Contact_Form_Wrapper {
   display: flex;
@@ -676,6 +750,14 @@
   align-items: center;
 }
 
+.contact_Cards_Title {
+  font-size: 1.6rem;
+  font-family: Montserrat,sans-serif;
+  color: var(--main-dark-color);
+  text-transform: capitalize;
+  font-weight: 700;
+}
+
 .Contact_Cards_Text {
   display: flex;
   flex-direction: column;
@@ -684,9 +766,30 @@
 
 /* Influencers */
 
+.influencers_title_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.influencers_title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  font-family: Hind,sans-serif;
+  margin-top: 2rem;
+}
+
+.influencers_subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1;
+  font-family: Hind,sans-serif;
+}
+
 .influencers_wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .influencers_card_main_Div {
@@ -728,24 +831,43 @@
   margin-top: 2rem
 }
 
-.Influencer_Slider_Div{
-  margin: 3rem 5px;
-}
-
 .Influencer_Slider_item {
-  height: 40rem !important;
-  padding: 0 1rem;
-}
-
-.ant-modal-close-x {
-  color: white;
+  height: 40rem;
+  margin: auto;
+  padding-top: 2rem;
 }
 
 /* Boutiques */
 
+.Boutique_Title {
+  text-align: center;
+  font-weight: 600;
+  font-style: normal;
+  text-transform: uppercase;
+  line-height: 1;
+  font-size: 3rem;
+  padding-top: 3rem;
+  font-family: Hind,sans-serif;
+}
+
+.boutique_Subtitle_Div {
+  font-weight: 600;
+  letter-spacing: .03vw;
+  color: #fff;
+  background-color: black;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 2rem 2%;
+}
+
+.Boutique_Subtitle {
+  font-size: 2.3rem;
+}
+
 .Boutiques_card_wrapper {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .Boutiques_cards_container {
@@ -779,6 +901,14 @@
 
 .Boutique_Modal_Slider_Div {
   width: 45rem;
+}
+
+.Boutique_Modal_Information_Div {
+  display: flex;
+}
+
+.Boutique_Modal_Information_Div_Img {
+  width: 25px;
 }
 
 .Boutique_Modal_City_Owner {
@@ -834,7 +964,126 @@
   width: 10rem;
 }
 
-/* Home History */
+/* Home */
+
+.Home_Product_Title {
+  font-family: Hind,sans-serif;
+  font-size: 14px;
+  line-height: 22px;
+  padding-top: 0;
+  font-weight: 400;
+}
+
+.Home_Product_Title:hover {
+  color: #e0c091;
+}
+
+.Home_White_Button {
+  border: 3px solid black;
+
+}
+
+.Home_White_Button button {
+  font-size: 24px;
+  line-height: 31px;
+  font-weight: 500;
+  letter-spacing: 0em;
+  transition: 0.3s all;
+  padding: 0.2rem 2rem;
+}
+
+.Home_White_Button:hover button {
+  color: #e0c091;
+}
+
+.tags_div {
+  left: 5px;
+  display: flex;
+  position: absolute;
+  top: 5px;
+}
+
+.tag_new {
+  color: #252525;
+  background: #e0c091;
+  border-radius: 2px;
+  padding: 1.5px;
+}
+
+.tag_preventa {
+  color: white;
+  background-color: pink;
+  border-radius: 2px;
+  padding: 1.5px;
+}
+
+.tag_restock {
+  color: black;
+  background-color: white;
+  border-radius: 2px;
+  padding: 1.5px;
+}
+
+.tag_soldout {
+  color: white;
+  background-color: black;
+  border-radius: 2px;
+  padding: 1.5px;
+}
+
+.Home_Anchoar_Title {
+  font-size: 24px;
+  line-height: 31px;
+  font-weight: 500;
+  letter-spacing: 0em;
+  font-family: Hind,sans-serif;
+  text-align: center;
+  transition: color .2s linear;
+}
+
+.Home_Anchoar_Title:hover {
+  color: #e0c091;
+}
+
+.Home_Subtitle {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  letter-spacing: 0em;
+  font-family: Hind,sans-serif;
+  color: #252525;
+  margin: 2px 0 0;
+  padding: 0;
+  text-align: center;
+}
+
+.Home_Buttons button {
+  width: 10rem;
+  margin: 1rem 1rem;
+  border: 1px solid black;
+  height: 3rem;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  transition: all 0.5s;
+}
+
+.Home_Buttons button:hover {
+  background-color: white;
+  color: black;
+}
+
+.Home_Collection_Card_Div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Home_Collection_Card_Div img {
+  height: 35rem; 
+  width: 30rem; 
+  box-shadow: 0 0 14px -2px #000000bf;
+}
 
 .Home_Titles_Main_Div {
   display: flex;
@@ -890,6 +1139,7 @@
   position: absolute; 
   top: 3.4rem; 
   color: black; 
+  right: 0;
   background-color: white;
   height: 0rem;
   transition: all 0.5s;
@@ -1005,4 +1255,57 @@
   color: #000;
   background: white;
   border: 1px solid black;
+}
+
+/* Carousel */
+
+.ant-carousel .slick-prev,
+.ant-carousel .slick-prev:hover,
+.ant-carousel .slick-prev:focus {
+  font-size: inherit;
+  left: 2rem;
+  z-index: 2;
+  transform: scale(2.5);
+}
+
+.ant-carousel .slick-next,
+.ant-carousel .slick-next:hover,
+.ant-carousel .slick-next:focus {
+  font-size: inherit;
+  right: 2rem;
+  z-index: 2;
+  transform: scale(2.5);
+}
+
+/* Global Modal */
+
+.GlobalModal_Buttons_Wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.GlobalModal_Buttons {
+  background: black;
+  color: white;
+  width: 10rem;
+  height: 2rem;
+  border-radius: 5px;
+  border: 2px solid black;
+  transition: all 0.5s;
+}
+
+.GlobalModal_Buttons:hover {
+  color: black;
+  background: white;
+}
+
+/* Garment */
+
+.GarmentCardShadow {
+  transition: 0.5s all;
+}
+
+.GarmentCardShadow:hover {
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
 }
