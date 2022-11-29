@@ -10,6 +10,9 @@ export default function Header({ shop, menu, language }) {
   const { isOpen, openDrawer, closeDrawer } = useDrawer();
 
   /* const {country, locale, language} = useLocalization(); */
+  const urlData = useUrl();
+  //console.log(menu)
+  //console.log(urlData)
 
   const isHome = pathname === "/";
   return (
@@ -23,16 +26,24 @@ export default function Header({ shop, menu, language }) {
         </div>
       </Drawer>
       <header role="banner" className="header_nav">
-        <div>
-          <Link className="font-bold" to="/">
-            {shop.name}
+        <div style={{width: "4rem"}}>
+          <Link className="font-bold" to="/" style={{position: "absolute", left: "0", width: "4rem", top: "0"}}>
+            <img src="https://cdn.shopify.com/s/files/1/0300/5926/6141/files/logo_header.png?v=1641592461"/>
           </Link>
         </div>
 
-        <div>
-          {(menu?.items || []).map((page, index) => (
-            <Link key={index} to={page.url}>{page.title}</Link>
-          ))}
+        <div style={{paddingLeft: "5rem", display: "flex"}}>
+          {(menu?.items || []).map((page, index) => {
+            let param = new URL(page.url)
+            //console.log(param)
+
+            //console.log(param.pathname === urlData.pathname)
+
+            return param.pathname === urlData.pathname ? 
+            <Link style={{position: "relative"}} className="gold menu_active" key={index} to={page.url}><div>{page.title}</div><div className="menu_low_arrow" style={{position: "absolute"}}></div></Link> : 
+            <Link style={{position: "relative"}} className="gold" key={index} to={page.url}><div>{page.title}</div><div className="menu_low_arrow" style={{position: "absolute"}}></div></Link>
+            
+          })}
         </div>
 
         {/* Form */}
