@@ -1,13 +1,13 @@
-import React from "react";
 import { Layout } from "../../components/Global/Layout.server"
-import AboutUs from "../../components/AboutUs/About-Us.server"
+import AboutUs from "../../components/AboutUs/About-Us.client"
+import { useSession } from "@shopify/hydrogen";
 
 export default function Boutiques() {
-
+  let {language} = useSession()
 
   return (
     <Layout>
-      <AboutUs></AboutUs>
+      <AboutUs lng={language || 'en'}></AboutUs>
     </Layout>
   )
 }
