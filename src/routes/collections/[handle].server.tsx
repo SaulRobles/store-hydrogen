@@ -1,4 +1,3 @@
-import React from "react"
 import { Layout } from "../../components/Global/Layout.server"
 import PageMenu from "../../components/Global/Pages-Menu.server"
 import { useRouteParams } from "@shopify/hydrogen";

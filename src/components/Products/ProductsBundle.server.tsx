@@ -1,4 +1,3 @@
-import React from "react";
 import { useShopQuery, CacheLong, gql, useSession } from "@shopify/hydrogen";
 
 /* import Test from "./test.client" */
@@ -39,27 +38,24 @@ export default function Bundle({ product, shop }) {
           }
 
           variants(first: 100) {
-            nodes {
-              id
-              title
-              sku
-              quantityAvailable
-              availableForSale
-              currentlyNotInStock
-              selectedOptions {
-                name
-                value
-              }
-              image {
-                altText
-                url
-              }
-              priceV2 {
-                amount
-                currencyCode
-              }
+          nodes {
+            id
+            title
+            sku
+            quantityAvailable
+            availableForSale
+            currentlyNotInStock
+            image {
+              altText
+              url
             }
+            selectedOptions {
+              name
+              value
+            }
+            price
           }
+        }
 
         }
       }

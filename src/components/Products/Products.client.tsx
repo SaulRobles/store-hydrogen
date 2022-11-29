@@ -1,13 +1,13 @@
 import React, { Suspense } from "react";
 import Carousel from "../Elements/Carousel.client"
-import { ProductOptionsProvider, AddToCartButton } from "@shopify/hydrogen";
+import { ProductOptionsProvider } from "@shopify/hydrogen";
 import Share from "./Share.client"
 
 import '../../i18n';
 
 import ClassicTemplate from "./ProductChildsTemplate.client"
 
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 let lngflag = false;
 

@@ -9,6 +9,7 @@ let videoStyle = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   width: '80rem',
+  height: '40rem',
   border: '2px solid #000',
   boxShadow: 24
 };

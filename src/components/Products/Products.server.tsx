@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import { Suspense } from "react";
 import { useShopQuery, CacheLong, gql, useCart } from "@shopify/hydrogen";
 
 import Bundlequery from "./ProductsBundle.server"
@@ -41,14 +41,15 @@ export default function Product({ handle }){
             quantityAvailable
             availableForSale
             currentlyNotInStock
+            image {
+              altText
+              url
+            }
             selectedOptions {
               name
               value
             }
-            unitPrice {
-              amount
-              currencyCode
-            }
+            price
           }
         }
 

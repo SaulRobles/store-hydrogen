@@ -1,4 +1,3 @@
-import React from "react";
 import { useShopQuery, CacheLong, gql } from "@shopify/hydrogen";
 import CardList from "./Collection-Products-Cards.client"
 
@@ -11,7 +10,8 @@ export default function Cards({ handle }) {
   const SHOP_QUERY = gql`
   query layout {
     collection(handle: ${col}) {
-      products(first: 10) {
+      id
+      products(first: 24) {
         nodes {
           title
           onlineStoreUrl
@@ -21,12 +21,19 @@ export default function Cards({ handle }) {
               currencyCode
             }
           }
-          images(first: 10) {
+          availableForSale
+          images(first: 2) {
             nodes {
               altText
               url
             }
           }
+          metafield(namespace: "store", key: "published_at") {
+            key
+          	type
+          	value
+          }
+          createdAt
         }
       }
     }
