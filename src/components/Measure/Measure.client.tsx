@@ -14,6 +14,9 @@ export default function Measure({data, lng}){
     lngflag = true;
   }
 
+  //console.log(lng)
+  //console.log(data)
+
   return (
     <>
       {lng === 'es' ? <img src={banner_es}/>: <img src={banner_en}/>}

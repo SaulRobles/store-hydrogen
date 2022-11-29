@@ -2,10 +2,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import { AddToCartButton } from "@shopify/hydrogen";
+import { AddToCartButton, useCart } from "@shopify/hydrogen";
 import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
-
-
 
 const style = {
   position: 'absolute' as 'absolute',
@@ -25,6 +23,15 @@ export default function cartModal({ product, variant, qty, shop }) {
   let TermsCheckBoxRef = React.useRef(null);
   let AssistanceCheckBoxRef = React.useRef(null);
   let [disableCheckButton, setdisableCheckButton] = React.useState(false)
+  
+  let cart = useCart();
+  //console.log(cart)
+
+  const { checkoutUrl, cost, lines  } = useCart();
+
+  //console.log("Modal")
+  //console.log(variant)
+  //console.log(product)
 
   function checkBox(){
     //@ts-ignore
@@ -59,7 +66,9 @@ export default function cartModal({ product, variant, qty, shop }) {
                 <h2 style={{marginBottom: "1rem", fontWeight: "600"}}>Added to cart successfully</h2>
               </div>
               <div>
-                <img src={variant.image.url} alt="" />
+                {/* <img src={variant.image.url} alt="" /> */
+                  variant.image ? <img src={variant.image.url} alt="" /> : <img src="" alt="" />
+                }
               </div>
               <div className='Product_Modal_Information'>
                 <h3>{product.title}</h3> {/* Name */}
@@ -68,14 +77,16 @@ export default function cartModal({ product, variant, qty, shop }) {
                     (<span><strong>{variant.name}:</strong> {variant.value}</span>))}  
                 </p> {/* Options */}
                 <span><strong>QTY:</strong> {qty.value}</span> {/* Cantidad de pz's */}
-                <span><strong>TOTAL:</strong> ${parseInt(variant.priceV2.amount) * qty.value} {variant.priceV2.currencyCode}</span>{/* Cantidad de $ */}
+                {
+                  
+                }
               </div>
             </div>
             {/* Parte Derecha */}
             <div className='Product_Modal_Right_Div'>
               <div className='Product_Modal_Cart_Information'>
-                <span style={{marginBottom: "1rem"}}>There are {shop.totalQuantity + qty.value} items in your cart</span> {/* Qty Items in the cart */}
-                <p><strong>Total: </strong><span style={{fontSize: "1.5rem", fontWeight: "bold"}}>${parseInt(shop.cost.totalAmount.amount) +  (parseInt(variant.priceV2.amount) * qty.value)} {shop.cost.totalAmount.currencyCode}</span></p> {/* Total De todos los items del carrito */}
+                {/* <span style={{marginBottom: "1rem"}}>There are {shop.totalQuantity + qty.value} items in your cart</span> */} {/* Qty Items in the cart */}
+                {/* <p><strong>Total: </strong><span style={{fontSize: "1.5rem", fontWeight: "bold"}}>${parseInt(shop.cost.totalAmount.amount) +  (parseInt(variant.priceV2.amount) * qty.value)} {shop.cost.totalAmount.currencyCode}</span></p> */} {/* Total De todos los items del carrito */}
               </div>
               <div className='Product_Modal_Buttons_Div'> {/* Botones */}
                 <Button className='Product_Modal_Buttons' variant="outlined">Continue Shopping</Button>
@@ -88,7 +99,7 @@ export default function cartModal({ product, variant, qty, shop }) {
                 </FormGroup>
               </div>
               <div className='Product_Modal_Buttons_Div'>
-                <Button disabled={!disableCheckButton} className='Product_Modal_Buttons' variant="outlined"><a href={shop.checkoutUrl}>PROCEED TO CHECKOUT</a></Button> {/* Proceder a comprar */}
+                <Button disabled={!disableCheckButton} className='Product_Modal_Buttons' variant="outlined"><a href={checkoutUrl}>PROCEED TO CHECKOUT</a></Button> {/* Proceder a comprar */}
               </div>
             </div>
           </div>

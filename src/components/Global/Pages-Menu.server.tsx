@@ -1,7 +1,5 @@
 import { useShopQuery, CacheLong, gql } from "@shopify/hydrogen";
 import Menu from "./Pages-Menu.client"
-import React from "react";
-
 
 export default function Pages_Menu() {
   const {
