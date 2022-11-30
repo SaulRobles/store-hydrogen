@@ -40,7 +40,7 @@ export default function CollectionCards({ collection }){
       method: "GET",
       headers: {
         "X-Shopify-Access-Token": "65640e6f21aaf5305ac02518d9793b1a",
-        "Access-Control-Allow-Origin": "http://localhost:3000"
+        "Access-Control-Allow-Origin": "*"
       }
     })
     .then(res => res.json())
