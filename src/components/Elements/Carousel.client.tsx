@@ -2,19 +2,10 @@ import { Carousel } from 'antd';
 import React from 'react';
 import default_img from "../../assets/default/sol_collection_default_img.jpg"
 
-const contentStyle: React.CSSProperties = {
-  height: '160px',
-  color: '#fff',
-  lineHeight: '160px',
-  textAlign: 'center',
-  background: '#364d79',
-};
-
 export const BannerCarousel = ({banners}) => {
 
   return(
-    <Carousel 
-    /* autoplay={true} */
+    <Carousel
     draggable={true}
     arrows={true}
     >
@@ -27,25 +18,32 @@ export const BannerCarousel = ({banners}) => {
   )
 }
 
-/* Main Carousel */
-const App: React.FC = ({images, main, params, multipleProducts}) => {
+/* Main Carousel - Carousel de productos */
+const productCarousel: React.FC = ({images, main, multipleProducts}) => {
   let products;
-  if(multipleProducts) products = [...images]
+  let showImages;
+  if(multipleProducts) {
+    products = [...images]
+    showImages = 4;
+  } else {
+    images?.length > 5 ? showImages = 6 : showImages = images?.length
+  }
 
   return (
-    <Carousel slidesToShow={images?.length > 3 ? 4 : 1}>
+    <Carousel slidesToShow={showImages} draggable={true} dots={false} arrows={true}>
       {!multipleProducts && images?.map((img, index) => (      
           <div key={index} className="Carousel_Card">
             <img onClick={main} src={img.url} alt={img.altText} />
           </div> 
-        ))}
+        ))
+      }
 
       {multipleProducts && products?.map((ele, index) => (
         <div key={index} className="Carousel_Img_Div">
           <a style={{display: "flex", flexDirection: "column", alignItems: "center"}} href={ele.onlineStoreUrl}>
             <img src={ele.images.nodes[0].url} alt={ele.images.nodes[0].altText} />
             <div className="Carousel_Product_Text">
-              <h2>{ele.title}</h2>
+              <h2 style={{fontSize: "12px", cursor: "pointer", fontFamily: "Hind,sans-serif"}}>{ele.title}</h2>
               <p>${ele.priceRange.maxVariantPrice.amount} {ele.priceRange.maxVariantPrice.currencyCode}</p>
             </div>
           </a>
@@ -56,7 +54,6 @@ const App: React.FC = ({images, main, params, multipleProducts}) => {
 };
 
 export const Collection_Carousel = ({collection, params}) => {
-
 
   return (
     <Carousel slidesToShow={4}>
@@ -74,4 +71,4 @@ export const Collection_Carousel = ({collection, params}) => {
   )
 }
 
-export default App
+export default productCarousel

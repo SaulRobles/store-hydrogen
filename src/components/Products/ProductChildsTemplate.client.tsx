@@ -1,34 +1,35 @@
 import React from "react";
-import Button from '@mui/material/Button';
-
 import Modal from "../Elements/AddProductModal.client"
 
 import { ProductOptionsProvider, AddToCartButton } from "@shopify/hydrogen";
+import '../../i18n';
+import { useTranslation } from 'react-i18next';
+let lngflag = false;
 
-export default function Child({ product, isBundle, shop }) {
-  //console.log(product)
-
+export default function Child({ product, isBundle, shop, lng }) {
+  const [ t, i18n ] = useTranslation();
   const [information, setInformation] = React.useState({});
   const [qty, setQty] = React.useState({value: 1})
   let variant = {}
 
   function set_Variant() {
-    //console.log(information)
     let title = Object.values(information).join(' / ')
     let reverse_title = Object.values(information).reverse().join(' / ')
     product.variants.nodes.forEach((element) => {
       if(element.title === title || element.title === reverse_title) {
-        
         variant = element
-        //console.log(variant)
       }
     })
+  }
+
+  if(!lngflag) {
+    i18n.changeLanguage(lng)
+    lngflag = true;
   }
 
   set_Variant()
 
   const option_button = (e) => {
-    //console.log(e)
     let parent;
     if(e.target.localName === "img") {
       e = e.target.offsetParent
@@ -57,22 +58,26 @@ export default function Child({ product, isBundle, shop }) {
 
   return(
     <ProductOptionsProvider data={product}>
-      { /* Informacion del producto */ }
-      <hr style={{marginTop: "2rem", marginBottom: "2rem"}} className="hr_divider"/>
       {/* SKU */}
-      <span>SKU: {variant.sku}</span>
+      <span style={{marginBottom: "0"}}>SKU: {variant.sku}</span>
       {/* Titulo y Precios */}
-      <h1>{product.title}</h1>
-      <span>${product.priceRange.maxVariantPrice.amount} {product.priceRange.maxVariantPrice.currencyCode}</span>
+      {isBundle ? <h1>{product.title}</h1> : <h1 style={{fontSize: "2rem", fontFamily: "Hind,sans-serif", fontWeight: "500"}}>{product.title}</h1> }
+      {!isBundle && product.metafields[2]?.value === "jeans" &&  
+        <div style={{background: "#ff000059", alignItems: "center", display: "flex", padding: "0 1rem", marginTop: "1rem"}}>
+          <img src="https://cdn.shopify.com/s/files/1/0300/5926/6141/files/danger_icon_48.png?v=1670271532" alt="Danger Icon" /> {/* Danger Icon */}
+          <span style={{color: "white", paddingLeft: "2rem"}}>{t("products.jeans_warning")}</span>
+        </div>
+      }
+      <span style={{fontSize: "0.8rem", fontWeight: "600"}}>${product.priceRange.maxVariantPrice.amount} {product.priceRange.maxVariantPrice.currencyCode}</span>
       {isBundle && <img className="Bundle_Img_Div" src={product.images.nodes[0].url} alt="" />}
       {/* Opciones (Size, color, style) */}
-      <div>
+      <div style={{display: "flex", flexDirection: "column-reverse"}}>
         {product.options.map((option, index) => (
           <div key={index} className="Product_Options_Container">
-            <span>{option.name}: </span>
+            <span style={{marginBottom: "0"}}>{option.name}: </span>
             <div className="Product_Options_Values">
-              {option.name.toLowerCase() === "style" && option.values.map((val, index) => <Button name={option.name} onClick={option_button} value={val} key={index}><img src={product.variants.nodes[index].image.url} /></Button>)}
-              {option.name.toLowerCase() !== "style" && option.values.map((val, index) => <Button name={option.name} onClick={option_button} value={val} key={index}>{val}</Button>)}
+              {option.name.toLowerCase() === "style" && option.values.map((val, index) => <button name={option.name} onClick={option_button} value={val} key={index}><img src={product.variants.nodes[index].image.url} /></button>)}
+              {option.name.toLowerCase() !== "style" && option.values.map((val, index) => <button name={option.name} onClick={option_button} value={val} key={index}>{val}</button>)}
             </div>
           </div>
         ))}

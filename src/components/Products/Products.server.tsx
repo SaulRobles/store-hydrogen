@@ -1,7 +1,7 @@
 import { Suspense } from "react";
-import { useShopQuery, CacheLong, gql, useCart } from "@shopify/hydrogen";
-
+import { useShopQuery, CacheLong, gql } from "@shopify/hydrogen";
 import Bundlequery from "./ProductsBundle.server"
+
 export default function Product({ handle }){
   let prod = `"${handle}"`
 
@@ -21,6 +21,9 @@ export default function Product({ handle }){
           }
         }
 
+        availableForSale
+        createdAt
+        tags
         options {
           name
           values
@@ -57,7 +60,8 @@ export default function Product({ handle }){
         [{namespace: "store", key: "template_sale"}, 
          {namespace: "store", key: "variant_items"}, 
          {namespace: "store", key: "sizechart"}, 
-         {namespace: "store", key: "videoId"}]) 
+         {namespace: "store", key: "videoId"},
+         {namespace: "store", key: "published_at"}]) 
         {
           key
           type

@@ -76,6 +76,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  margin-top: 1rem;
 }
 
 /* Header */
@@ -394,10 +396,11 @@
 
 .Product_Information_Container {
   display: flex;
+  justify-content: center;
 }
 
 .Product_Information_Image {
-  width: 50%;
+  width: 35%;
   padding-top: 5rem;
 }
 
@@ -424,13 +427,13 @@
 
 .Product_Options_Values button {
   margin: 5px;
-  padding: 0.5rem 0.5rem;
-  width: 4rem;
-  height: 4rem;
-  background-color: lightgrey;
+  padding: 0.5rem 1.5rem;
   font-size: 12px;
   text-align: center;
-  color: black
+  color: black;
+  border: 3px solid black;
+  background-color: white;
+  font-size: 12px;
 }
 
 .Product_Options_Values button:hover {
@@ -556,6 +559,138 @@
 .Product_Modal_Buttons:hover {
   background: #ffffff !important;
   color: #252525 !important;
+}
+
+/* Product - Sizechart */
+
+.sizechart_main {
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: .03vw;
+  color: #fff;
+  background-color: black;
+  padding: 0.4rem 1rem;
+  text-align: center;
+  box-shadow: 0 0 #000000bf;
+  transition: all .2s;
+  text-transform: uppercase;
+  display: inline-block;
+  border-radius: 3px;
+  margin: 2rem 0rem 0.5rem 0rem;
+}
+
+.sizechart_main:hover {
+  color: black;
+  background-color: #fff;
+  box-shadow: 0 0 9px -2px #000000bf;
+}
+
+.sizechart_Button {
+  transition: 0.5s all;
+  margin: 0px 0.2rem;
+  color: white;
+  background: rgb(37, 37, 37);
+  width: 4rem;
+  height: 2.2rem;
+  border-radius: 3px;
+}
+
+.sizechart_Button:hover {
+  background-color: white !important;
+  color: black !important;
+}
+
+.sizechart_Button_active {
+  background-color: white !important;
+  color: black !important;
+}
+
+/* Product - Assistance Button */
+
+.Assistance_Main_Div {
+  border-bottom: 1px solid black; 
+  width: 50%;
+  border-radius: 5px 5px 0px 0px;
+  transition: all 0.5s;
+  text-align: center;
+  padding: 5px;
+}
+
+.Assistance_Main_Div:hover {
+  background-color: black;
+  color: white;
+  border-bottom: 5px solid #e0c091;
+  box-shadow: 0 0 14px -2px #000000bf;
+}
+
+.Calculator_title {
+  font-weight: 900;
+  font-size: 30px;
+  line-height: 40px; 
+  letter-spacing: 0px; 
+  text-transform: uppercase; 
+  font-family: Hind,sans-serif; 
+  margin-top: 19px; 
+  margin-bottom: 1rem;
+}
+
+.Calculator_subtitle {
+  font-size: 30px; 
+  line-height: 40px; 
+  letter-spacing: 0px; 
+  font-weight: 700; 
+  margin-top: 19px;
+}
+
+.Calculator_Video_Div {
+  margin-top: 2rem; 
+  display: flex; 
+  width: 20rem; 
+  border: 1px solid black; 
+  justify-content: space-between;
+}
+
+.Calculator_Video_Text {
+  display: flex; 
+  width: 100%; 
+  justify-content: center; 
+  align-items: center
+}
+
+.Calculator_Video_Img {
+  width: 3rem; 
+  background-color: black; 
+  padding: 0.5rem;
+}
+
+.Calculator_Measure_Data_Div {
+  display: flex; 
+  flex-direction: column; 
+  margin-left: 1rem;
+}
+
+.Calculator_Measure_Data_Label {
+  margin-bottom: 8px; 
+  line-height: 22px; 
+  font-size: 1.3rem;
+}
+
+.Calculator_Measure_Data_Input {
+  background-color: lightgray; 
+  height: 2rem; 
+  width: 80%; 
+  text-align: center; 
+  padding-left: 20px;
+}
+
+/* Product - Calculator */
+
+.Calculator_Main_Div {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  margin-top: 1rem;
 }
 
 /* About Us */

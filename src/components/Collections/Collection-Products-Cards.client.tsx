@@ -1,27 +1,29 @@
 import React from 'react';
-//import { Link, Image, Money } from "@shopify/hydrogen";
-import {fetchSync} from '@shopify/hydrogen';
+/* import Shopify from '@shopify/shopify-api'; */
 
 export default function CollectionCards({ collection }){
-  /* const [page, setPage] = React.useState(1);
-  
-  const root = "https://solbeautyandcare-mx.myshopify.com/"
-  const api = "admin/products/count.json"
-  const url = root + api */
-  
-  let products
-  /* let collectionCount; */
-  if(collection) {
-    products = collection.products 
-    /* collectionCount = collection.id.split("gid://shopify/Collection/")
-    const params = `?status=active&collection_id=${collectionCount[1] || 1}`
-    console.log(url + params)
-    const data = fetchSync(url+params).json();
-    console.log(data) */
+  const [page, setPage] = React.useState(1);
+
+  /* const client = new Shopify.Clients.Rest(
+    "solbeautyandcare-mx.myshopify.com",
+    "65640e6f21aaf5305ac02518d9793b1a"
+  );
+
+  async function test() {
+    const product = await client.get({
+      path: `products/6968874664112`,
+      query: {id: 1, title: "title"}
+    });
+
+    return product
   }
 
-  /* console.log(collection)
-  console.log(collectionCount[1]) */
+  console.log(test()) */
+  
+  let products
+  if(collection) {
+    products = collection.products 
+  }
 
   return(
     <div className="product_wrapper">

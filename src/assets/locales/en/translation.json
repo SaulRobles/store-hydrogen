@@ -1,4 +1,27 @@
 {
+  "products": {
+    "description": "Description",
+    "jeans_warning": "All of our jeans have a tailor made size calculator. We recommend you type in your body measurements before placing your purchase.",
+    "assistance_button": "I'm not sure about my sizes, I need assistance ",
+    "assistance_link": "https:\/\/api.whatsapp.com\/send?phone=526645756005&text=Hello, I need assistance to find my size",
+    "sizechart_button": "Size Chart",
+    "calculator_button": "GET YOUR SIZE",
+    "calculator": {
+      "title": "GET YOUR SIZE",
+      "measures": "What are your measurements?",
+      "comment": "Make sure you input your measurements correctly so the result is as accurate as possible.",
+      "video_text": "Know how to take your measurements",
+      "measure_unit": "Select unit of measurement",
+      "cm": "Centimeters",
+      "in": "Inches",
+      "waist": "Waist measurement",
+      "hip": "Hip measurement",
+      "ideal_size": "YOUR IDEAL SIZE",
+      "calculate_button": "GET MY SIZE",
+      "last_comment": "This size is approximate, if you want to consult with an advisor, get in touch here: ",
+      "size_error": "Oops! It looks like we are having trouble processing your request at this moment. Get in touch with our customer service team so we can best help you out."
+    }
+  },
   "home": {
     "new_releases": "NEW RELEASES",
     "new_releases_subtitle": "DISCOVER OUR NEW PRODUCTS",
