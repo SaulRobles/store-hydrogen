@@ -1,6 +1,7 @@
 {
   "products": {
     "description": "Descripción",
+    "unavailable_product": "Esta variante de producto no se encuentra disponible",
     "jeans_warning": "Cada jeans cuenta con una calculadora de tallas personalizada, te recomendamos ingresar tus medidas en la calculadora antes de realizar tu compra.",
     "assistance_button": "No estoy seguro de mis tallas, necesito ayuda ",
     "assistance_link": "https:\/\/api.whatsapp.com\/send?phone=526645756005&text=Hola, necesito asesoría para encontrar mi talla",

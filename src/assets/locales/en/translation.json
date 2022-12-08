@@ -1,6 +1,7 @@
 {
   "products": {
     "description": "Description",
+    "unavailable_product": "This product variant is not available",
     "jeans_warning": "All of our jeans have a tailor made size calculator. We recommend you type in your body measurements before placing your purchase.",
     "assistance_button": "I'm not sure about my sizes, I need assistance ",
     "assistance_link": "https:\/\/api.whatsapp.com\/send?phone=526645756005&text=Hello, I need assistance to find my size",

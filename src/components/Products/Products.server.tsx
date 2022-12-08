@@ -61,7 +61,7 @@ export default function Product({ handle }){
          {namespace: "store", key: "variant_items"}, 
          {namespace: "store", key: "sizechart"}, 
          {namespace: "store", key: "videoId"},
-         {namespace: "store", key: "published_at"}]) 
+         {namespace: "store", key: "published_at"}])
         {
           key
           type

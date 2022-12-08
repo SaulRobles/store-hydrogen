@@ -85,7 +85,7 @@ export default function Child({ product, isBundle, shop, lng }) {
 
       {/* Qty y Add to Cart Button */}
       {variant.quantityAvailable <= 0 &&
-        <h3>Esta variante de producto no se encuentra disponible</h3> //Agregar un avisame cuando este disponible)?
+        <h3>{t("products.unavailable_product")}</h3> //Agregar un avisame cuando este disponible)?
       }
       {Object.entries(variant).length !== 0 && variant.quantityAvailable > 0 &&
         <div className="Product_Buy_Div">

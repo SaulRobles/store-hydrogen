@@ -75,7 +75,7 @@ export default function Product({ sizechart, product, childrens, isBundle, shop,
               {/* Assistence Button */}
               <AssistenceButton lng={lng}/>
               {/* Calculadora de tallas */}
-              {calculator && calculatorsAvailable.includes(calculator) ? <Calculator query={calculator} lng={lng}></Calculator> : ''}
+              {calculator && calculatorsAvailable.includes(calculator) ? <Calculator query={calculator} lng={lng} product={product}></Calculator> : ''}
               {/* Description */}
               <span style={{color: "#e0c091"}}>{t("products.description")}</span> {/* Esto es un acordeon */}
               <div dangerouslySetInnerHTML={{__html: product.descriptionHtml}} />

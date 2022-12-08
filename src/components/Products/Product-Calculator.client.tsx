@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import { fetchSync } from "@shopify/hydrogen";
+import VideoModal from "./Calculator-Measure-Video-Modal.client"
 
 type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
@@ -9,7 +10,7 @@ import '../../i18n';
 import { useTranslation } from 'react-i18next';
 let lngflag = false;
 
-export default function Calculator({lng, query}) {
+export default function Calculator({lng, query, product}) {
   const [state, setState] = React.useState({right: false});
   let [error, setError] = React.useState(false)
   const [form, setForm] = React.useState({hip: 115, waist: 90, measure_type: 'cm', size_guide: query, es: 'es'})
@@ -29,21 +30,32 @@ export default function Calculator({lng, query}) {
   const calculateUrl = "https://ws.solbeautyandcare.com/size/predict/"
 
   function cleanError() {
-    setError(false);
+    setError(false)
     setMeasure(0)
   }
 
   function selectOnchangeHandle(e) {
-    console.log("onchange handle:")
-    console.log(e.target.value)
-    setForm({...form, measure_type: e.target.value})
+    const auxWaist = form.waist
+    const auxHip = form.hip
+    let waist: number = 0;
+    let hip: number = 0;
+    if(e.target.value === "cm") {
+      console.log("Unidad en Cm:")  
+      waist = Number((auxWaist * 2.54).toFixed(2))
+      hip = Number((auxHip * 2.54).toFixed(2))
+    } else {
+      console.log("Unidad en In:")
+      waist = Number((auxWaist * 0.393701).toFixed(2))
+      hip = Number((auxHip * 0.393701).toFixed(2))
+    }
+    setForm({...form, measure_type: e.target.value, waist, hip})
   }
 
   function measureInputHandle(e) {
     console.log("Measure Input:")
     console.log(e.target.value)
     console.log(e.target.value ? true : false)
-    const aux = e.target.value ? Number(e.target.value) : 0;
+    const aux = e.target.value ? Number(e.target.value).toFixed(2) : 0;
     setForm({...form, [e.target.name]: aux})
   }
 
@@ -72,6 +84,9 @@ export default function Calculator({lng, query}) {
   }
 
   console.log(form)
+  console.log(product)
+
+  let videoID = product?.metafields[3]?.value
 
   const toggleDrawer = (anchor: Anchor, open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
     if (event.type === 'keydown' && ((event as React.KeyboardEvent).key === 'Tab' || (event as React.KeyboardEvent).key === 'Shift')) {
@@ -94,17 +109,14 @@ export default function Calculator({lng, query}) {
         <h3 className='Calculator_subtitle'>{t("products.calculator.measures")}</h3>
         <h4>{t("products.calculator.comment")}</h4>
         {/* video */}
-        <div className='Calculator_Video_Div'>
-          <div className='Calculator_Video_Text'>{t("products.calculator.video_text")}</div>
-          <div><img className='Calculator_Video_Img' src="https://cdn.shopify.com/s/files/1/0300/5926/6141/t/14/assets/play_gold_small.png?v=170938147072388996601655939769" alt="Golden Play Image" /></div>
-        </div>
+        <VideoModal lng={lng} videoID={videoID} />
         <hr style={{margin: "2rem 0", width: "80%"}}/>
         {/* Medida */}
         <div style={{display: "flex", margin: "0.5rem 0"}}>
           <img style={{width: "50px", height: "50px"}} src="https://cdn.shopify.com/s/files/1/0300/5926/6141/t/14/assets/ruler_small.png?v=38215452587227283011655939761" alt="" />
           <div className='Calculator_Measure_Data_Div'>
             <label className='Calculator_Measure_Data_Label' htmlFor="measure">{t("products.calculator.measure_unit")}</label>
-            <select onChange={selectOnchangeHandle} name="measure" id="measure" style={{backgroundColor: "lightgray", height: "2rem", padding: "1px 0px 5px 10px"}}>
+            <select onChange={selectOnchangeHandle} name="measure" id="measure" style={{backgroundColor: "lightgray", height: "2rem", padding: "1px 0px 5px 10px", fontSize: "1.3rem"}}>
               <option value="cm">{t("products.calculator.cm")}</option>
               <option value="in">{t("products.calculator.in")}</option>
             </select>
@@ -115,7 +127,7 @@ export default function Calculator({lng, query}) {
           <img style={{width: "20%"}} src="https://cdn.shopify.com/s/files/1/0300/5926/6141/t/14/assets/waist_small.png?v=66897675781389265371655939771" alt="" />
           <div className='Calculator_Measure_Data_Div'>
             <label className='Calculator_Measure_Data_Label' htmlFor="waist"><span style={{color: "red"}}>*</span>{t("products.calculator.waist")}</label>
-            <input onClick={cleanError} onInput={measureInputHandle} className='Calculator_Measure_Data_Input' type="number" name='waist' id='waist' value={form.waist} min="0"/>
+            <input onClick={cleanError} onInput={measureInputHandle} className='Calculator_Measure_Data_Input' type="number" name='waist' id='waist' value={form.waist.toFixed(2)} min="0"/>
           </div>
         </div>
         {/* Cadera */}
@@ -123,7 +135,7 @@ export default function Calculator({lng, query}) {
           <img style={{width: "20%"}} src="https://cdn.shopify.com/s/files/1/0300/5926/6141/t/14/assets/hip_small.png?v=46385642286056346521655939766" alt="" />
           <div className='Calculator_Measure_Data_Div'>
             <label className='Calculator_Measure_Data_Label' htmlFor="hip"><span style={{color: "red"}}>*</span>{t("products.calculator.hip")}</label>
-            <input onClick={cleanError} onInput={measureInputHandle} className='Calculator_Measure_Data_Input' type="number" name='hip' id='hip' value={form.hip} min="0"/>
+            <input onClick={cleanError} onInput={measureInputHandle} className='Calculator_Measure_Data_Input' type="number" name='hip' id='hip' value={form.hip.toFixed(2)} min="0"/>
           </div>
         </div>
         {/* Error */}

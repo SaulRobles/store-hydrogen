@@ -92,7 +92,7 @@ export default function BasicModal({boutique, lng}) {
                     </div> : <></>
                   }
                   {boutique?.boutique?.profile?.whatsapp ? 
-                    <div className='Boutique_Modal_Information_Div_Img' className='Boutique_Modal_Information_Div'>
+                    <div /* className='Boutique_Modal_Information_Div_Img' */ className='Boutique_Modal_Information_Div'>
                       <img src="https://cdn.shopify.com/s/files/1/0300/5926/6141/files/icons8-whatsapp-24.png?v=1666285726" alt="" />
                       <span>{boutique?.boutique?.profile?.whatsapp}</span>
                     </div> : <></>
