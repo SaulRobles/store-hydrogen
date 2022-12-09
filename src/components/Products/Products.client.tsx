@@ -8,6 +8,8 @@ import Sizechart from "./Product-Sizechart-Modal.client"
 import AssistenceButton from "./Product-Assistance-Button.client"
 import Calculator from "./Product-Calculator.client"
 
+/* import ProductWidget from "./LetMeKnow-Widget.client" */
+
 import '../../i18n';
 import { useTranslation } from 'react-i18next';
 let lngflag = false;
@@ -47,6 +49,8 @@ export default function Product({ sizechart, product, childrens, isBundle, shop,
   return(
     <Suspense fallback="loading">
       <ProductOptionsProvider data={product}>
+        {/* Let Me Know when Product is Available Widget */}
+        {/* <ProductWidget product={product} childrens={childrens}/> */}
         <div className="Product_Main_Div">
           <div className="Product_Information_Container">  {/* Imagenes e Informacion del producto */}
             <div className="Product_Information_Image"> {/* Imagenes */}
@@ -63,7 +67,7 @@ export default function Product({ sizechart, product, childrens, isBundle, shop,
               {/* Template Start */}
               {isBundle &&
                 Object.keys(childrens).map((child) => {
-                  return (<ClassicTemplate product={childrens[child].data.product} isBundle={isBundle} shop={shop}></ClassicTemplate>)
+                  return (<ClassicTemplate product={childrens[child].data.product} isBundle={isBundle} shop={shop} lng={lng}></ClassicTemplate>)
                 })
               }
               {!isBundle &&

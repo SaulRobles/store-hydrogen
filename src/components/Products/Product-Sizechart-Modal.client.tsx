@@ -32,7 +32,7 @@ export default function BasicModal({data, lng}) {
 
   const imgRef = React.useRef(null)
 
-  console.log(data)
+  /* console.log(data) */
 
   function test(medida) {
     console.log("funcion de prueba")

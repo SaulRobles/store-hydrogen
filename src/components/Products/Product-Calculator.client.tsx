@@ -40,11 +40,11 @@ export default function Calculator({lng, query, product}) {
     let waist: number = 0;
     let hip: number = 0;
     if(e.target.value === "cm") {
-      console.log("Unidad en Cm:")  
+      /* console.log("Unidad en Cm:")   */
       waist = Number((auxWaist * 2.54).toFixed(2))
       hip = Number((auxHip * 2.54).toFixed(2))
     } else {
-      console.log("Unidad en In:")
+      /* console.log("Unidad en In:") */
       waist = Number((auxWaist * 0.393701).toFixed(2))
       hip = Number((auxHip * 0.393701).toFixed(2))
     }
@@ -52,15 +52,15 @@ export default function Calculator({lng, query, product}) {
   }
 
   function measureInputHandle(e) {
-    console.log("Measure Input:")
+    /* console.log("Measure Input:")
     console.log(e.target.value)
-    console.log(e.target.value ? true : false)
+    console.log(e.target.value ? true : false) */
     const aux = e.target.value ? Number(e.target.value).toFixed(2) : 0;
     setForm({...form, [e.target.name]: aux})
   }
 
   function sendForm() {
-    console.log("Envio de formulario")
+    /* console.log("Envio de formulario") */
     fetch(calculateUrl, {
       method: 'POST',
       body: JSON.stringify(form),
@@ -69,22 +69,22 @@ export default function Calculator({lng, query, product}) {
       }
     }).then((res) => {
       if(res.status !== 200) {
-        console.log("No es un status 200:")
-        console.log(res.status)
+        /* console.log("No es un status 200:")
+        console.log(res.status) */
         setError(true);
       }
       return res.json();
     }).then((res) => {
-      console.log(res)
+      /* console.log(res) */
       if(res?.size) setMeasure(res?.size)
     }).catch((err) => {
-      console.log("catch del form:")
-      console.log(err)
+      /* console.log("catch del form:")
+      console.log(err) */
     })
   }
 
-  console.log(form)
-  console.log(product)
+  /* console.log(form)
+  console.log(product) */
 
   let videoID = product?.metafields[3]?.value
 

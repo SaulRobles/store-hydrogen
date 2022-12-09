@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "../Elements/AddProductModal.client"
 
-import { ProductOptionsProvider, AddToCartButton } from "@shopify/hydrogen";
+import { ProductOptionsProvider } from "@shopify/hydrogen";
 import '../../i18n';
 import { useTranslation } from 'react-i18next';
 let lngflag = false;
@@ -11,6 +11,42 @@ export default function Child({ product, isBundle, shop, lng }) {
   const [information, setInformation] = React.useState({});
   const [qty, setQty] = React.useState({value: 1})
   let variant = {}
+
+  const [available, setAvailable] = React.useState([]);
+  const [color, setColor] = React.useState({key: ''})
+
+  const sizeArray = available.filter((val) => val.key === color.key)
+
+  if(available.length === 0) {
+    const variantAux = product?.variants?.nodes?.filter((ele) => ele.availableForSale).map((ele) => ele.title.split(" / "))
+  
+    const auxArray = []
+  
+    product?.options?.forEach(element => {
+      if(element.name.toLowerCase() === 'color') {
+        element.values.forEach((colors) => {
+          if(color.key === '') {
+            setColor({...color, key: colors})
+            setInformation({...information, color: colors})
+          }
+          const aux = {key: colors, values: []}
+          auxArray.push(aux)
+        })
+      }
+    });
+  
+    variantAux.forEach(element => {
+      const color = element[1];
+  
+      auxArray.forEach((ele) => {
+        if(ele.key === color) {
+          ele.values.push(element[0])
+        }
+      })
+    });
+  
+    setAvailable([...auxArray])
+  }
 
   function set_Variant() {
     let title = Object.values(information).join(' / ')
@@ -71,16 +107,22 @@ export default function Child({ product, isBundle, shop, lng }) {
       <span style={{fontSize: "0.8rem", fontWeight: "600"}}>${product.priceRange.maxVariantPrice.amount} {product.priceRange.maxVariantPrice.currencyCode}</span>
       {isBundle && <img className="Bundle_Img_Div" src={product.images.nodes[0].url} alt="" />}
       {/* Opciones (Size, color, style) */}
-      <div style={{display: "flex", flexDirection: "column-reverse"}}>
-        {product.options.map((option, index) => (
-          <div key={index} className="Product_Options_Container">
-            <span style={{marginBottom: "0"}}>{option.name}: </span>
-            <div className="Product_Options_Values">
-              {option.name.toLowerCase() === "style" && option.values.map((val, index) => <button name={option.name} onClick={option_button} value={val} key={index}><img src={product.variants.nodes[index].image.url} /></button>)}
-              {option.name.toLowerCase() !== "style" && option.values.map((val, index) => <button name={option.name} onClick={option_button} value={val} key={index}>{val}</button>)}
-            </div>
+      <div style={{display: "flex", flexDirection: "column"}}>
+
+        <div className="Product_Options_Container">
+          <span style={{marginBottom: "0"}}>Colors: </span>
+          <div className="Product_Options_Values">
+            {available.map((option, index) => <button className={index === 0 ? 'Product_Active_Option' : ''} name={'color'} onClick={option_button} value={option.key} key={index}>{option.key}</button>)}
           </div>
-        ))}
+        </div>
+        
+        <div className="Product_Options_Container">
+          <span style={{marginBottom: "0"}}>Sizes: </span>
+          <div className="Product_Options_Values">
+          {sizeArray && sizeArray[0]?.values?.map((ele, index) => <button name={'size'} onClick={option_button} value={ele} key={index}>{ele}</button>)}
+          </div>
+        </div>
+
       </div>
 
       {/* Qty y Add to Cart Button */}

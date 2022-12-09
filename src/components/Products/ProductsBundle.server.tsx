@@ -7,8 +7,8 @@ export default function Bundle({ product, shop }) {
   let ChildItems = {}
   let {language} = useSession()
 
-  console.log("Producto:")
-  console.log(product?.metafields[2])
+  /* console.log("Producto:")
+  console.log(product?.metafields[2]) */
 
   const apiRoot = "https://sys.sbc.mx/";
   const api = apiRoot + "api";

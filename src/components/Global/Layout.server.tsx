@@ -6,6 +6,8 @@ import GlobalModal from "./country_language_modal.client";
 import Header from "./Header.client";
 import Footer from "./Footer.client";
 
+import Widget from "./whatsapp-widget.client"
+
 /**
  * A server component that defines a structure and organization of a page that can be used in different parts of the Hydrogen app
  */
@@ -37,6 +39,9 @@ export function Layout({ children }) {
         </div>
         {/* <GlobalModal language={language || 'en'}></GlobalModal> */}
         <Header shop={shop} menu={menu} language={language || 'en'} />
+
+        {/* Whatsapp Widget */}
+        <Widget/>
 
         <main role="main" id="mainContent" className="flex-grow">
           <Suspense fallback={null}>{children}</Suspense>

@@ -43,8 +43,8 @@ export default function measureVideo({lng, videoID}) {
 
   if(data) {
     data?.forEach(element => {
-      console.log("video element")
-      console.log(element)
+      /* console.log("video element")
+      console.log(element) */
       videoElement = element
     });
   }
