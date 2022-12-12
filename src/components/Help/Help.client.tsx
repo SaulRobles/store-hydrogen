@@ -1,8 +1,5 @@
 import React, { useRef } from "react";
-
 import Accordion from "../../components/Accordion/Accordion.client"
-
-import Help_Banner from "../../assets/Help/Banner_HelpCenter_2520.webp"
 import Help_Main_Img from "../../assets/Help/HelpCenter_Image.webp"
 
 let lngflag = false;
@@ -38,7 +35,8 @@ export default function Help({lng}) {
     {html: t("help.section_2.web_policy_data")},
     {html: t("help.section_2.shipping_policy_data")},
     {html: t("help.section_2.return_policy_data")},
-    {html: t("help.section_2.data_policy_data")}
+    {html: t("help.section_2.data_policy_data")},
+    {html: t("help.section_2.gift_policy_data")}
   ]
 
   return (
@@ -59,10 +57,17 @@ export default function Help({lng}) {
           <button onClick={(e) => text_change(e, 1)}>{t("help.section_2.shipping_policy_button")}</button>
           <button onClick={(e) => text_change(e, 2)}>{t("help.section_2.return_policy_button")}</button>
           <button onClick={(e) => text_change(e, 3)}>{t("help.section_2.data_policy_button")}</button>
+          <button onClick={(e) => text_change(e, 4)}>{t("help.section_2.gift_policy_button")}</button>
         </div>
         <div className="Help_Body_Container">
           <span ref={bodyRef} dangerouslySetInnerHTML={{__html: data[Text.text].html}}></span>
         </div>
+      </div>
+      <div style={{display: "flex", flexDirection: "column", alignItems: "center", marginTop: "2rem"}}>
+        <h4 style={{fontWeight: "bold", marginBottom: "1rem", fontSize: "1.1rem"}}>{t("help.warning_title")}</h4>
+        <p style={{fontWeight: "bold", marginBottom: "1.5rem"}}>{t("help.warning_subtitle")}</p>
+        <span style={{color: "#949494"}}>{t("help.warning_text")}</span>
+        <img style={{width: "20rem", marginTop: "3rem"}} src="https://cdn.shopify.com/s/files/1/0300/5926/6141/files/logo_928581ca-207b-475c-8558-7d16e3599101.png?v=1647977242" alt="SBC Logo" />
       </div>
     </>
   )

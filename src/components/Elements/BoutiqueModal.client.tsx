@@ -1,19 +1,19 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+
 import Modal from '@mui/material/Modal';
 import ReactPlayer from 'react-player';
 
 import { Carousel } from 'antd';
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  bgcolor: 'background.paper',
+  backgroundColor: 'white',
   border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
+  boxShadow: "24",
+  padding: "4",
 };
 
 export default function BasicModal({boutique, lng}) {
@@ -50,7 +50,7 @@ export default function BasicModal({boutique, lng}) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <div style={style}>
           <div className='Boutique_Modal_Main_Div'>
             {/* Seccion izquierda */}
             <div>
@@ -112,21 +112,21 @@ export default function BasicModal({boutique, lng}) {
               </div>
             }
           </div>
-        </Box>
+        </div>
       </Modal>
     </div>
   );
 }
 
 const BoutiqueModalStyle = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  bgcolor: 'black',
+  backgroundColor: 'black',
   border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
+  boxShadow: "24",
+  padding: "4",
   width: "60rem",
   height: "40rem"
 };
@@ -161,9 +161,9 @@ export function MeasureModal({ data, lng }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={BoutiqueModalStyle}>
+        <div style={BoutiqueModalStyle}>
           <ReactPlayer url={videoRoot + data[videoUrl]} loop={true} volume={0} muted={true} width="100%" height="100%" controls={true}/>
-        </Box>
+        </div>
       </Modal>
     </div>
   );

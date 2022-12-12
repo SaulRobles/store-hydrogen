@@ -14,6 +14,10 @@ import { useTranslation } from 'react-i18next';
 export default function Influencer({ lng, handle }) {
   const [ t, i18n ] = useTranslation();
   const [page, setPage] = React.useState(Number(handle));
+  const [filter, setFilter] = React.useState({active: false, data: ''})
+
+  console.log("WebHook de Filter:")
+  console.log(filter)
 
   if(!lngflag) {
     i18n.changeLanguage(lng)
@@ -33,7 +37,7 @@ export default function Influencer({ lng, handle }) {
 
   const root = 'https://sys.sbc.mx/'
   const api = 'api/v2/shop/influencer/list'
-  const params = '?'+new URLSearchParams(listQuery).toString();
+  const params = '?'+ new URLSearchParams(listQuery).toString();
   const url = root + api
 
   const {data} = fetchSync(url+params).json();
@@ -41,6 +45,25 @@ export default function Influencer({ lng, handle }) {
   const totalPages = Math.ceil(data.total / data.per_page)
 
   const banner = `https://storage.googleapis.com/shop-backend/shopify/influencers/banner_web_${lng}.mp4`
+
+  function searchHandle(e) {
+    if(e.type === 'keyup') {
+      if(e.key === 'Enter') {
+        if(e.target.value === '') {
+          setFilter({...filter, active: false, data: ''})
+        } else {
+          console.log("Es un evento de presionar enter")
+          let aux = {...listQuery, search: e.target.value}
+          console.log(aux)
+          let auxParams = '?' + new URLSearchParams(aux).toString();
+          fetch(url+auxParams)
+          .then(res => res.json())
+          .then(json => setFilter({...filter, active: true, data: json.data}))
+          .catch(err => console.log(err))
+        }
+      }
+    }
+  }
 
   return (
     <div>
@@ -50,9 +73,13 @@ export default function Influencer({ lng, handle }) {
         <span className='influencers_subtitle'>{t("influencers.subtitle")}</span>
       </div>
       <hr className='hr_divider'/>
+      <div style={{position: "relative"}}>
+        <input onKeyUp={searchHandle} type="text" style={{margin: "auto", display: "block", backgroundColor: "#f7f8fa", width: "25rem", paddingLeft: "2rem"}}/>
+        <i style={{position: "absolute", left: "47.5rem", top: "5px"}} className="fa-solid fa-magnifying-glass"></i>
+      </div>
       <Suspense fallback="Loading...">
         <div className="influencers_wrapper">
-          {data && data.items?.map((influencer, index) => (<Modal key={index} influencer={influencer} index={index}></Modal>))}
+          {filter.active ? (filter.data?.items || []).map((influencer, index) => (<Modal key={index} influencer={influencer} index={index}></Modal>)) : (data?.items || []).map((influencer, index) => (<Modal key={index} influencer={influencer} index={index}></Modal>)) }
         </div>
       </Suspense>
       <div className='influencers_Pagination_Div'>

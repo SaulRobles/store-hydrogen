@@ -5,14 +5,14 @@ import Modal from '@mui/material/Modal';
 import ReactPlayer from 'react-player';
 
 const style = {
-  position: 'absolute' as 'absolute',
+  position: 'absolute',
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-  bgcolor: 'black',
+  backgroundColor: 'black',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  padding: 4,
   width: "60rem",
   height: "40rem"
 };
@@ -47,9 +47,9 @@ export default function BasicModal({data, lng}) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <div style={style}>
           <ReactPlayer url={videoRoot + videoUrl} loop={true} volume={0} muted={true} width="100%" height="100%" controls={true}/>
-        </Box>
+        </div>
       </Modal>
     </>
   );

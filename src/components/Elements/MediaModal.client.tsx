@@ -1,20 +1,8 @@
 import React from 'react';
-import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import ReactPlayer from 'react-player';
 
-let videoStyle = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: '80rem',
-  height: '40rem',
-  border: '2px solid #000',
-  boxShadow: 24
-};
-
-const imgStyle = {
+let imgStyle = {
   position: 'absolute',
   top: '50%',
   left: '50%',
@@ -37,7 +25,31 @@ export default function MediaModal({data, lng, btnText}) {
 
   const videoRoot = 'https://www.youtube.com/watch?v=';
 
-  data?.featured_video_url ? videoStyle.height = 'auto' : videoStyle.height = '50rem'
+  let videoStyle;
+
+  if(data?.featured_video_url) {
+    videoStyle = {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: '80rem',
+      height: 'auto',
+      border: '2px solid #000',
+      boxShadow: 24
+    };
+  } else {
+    videoStyle = {
+      position: 'absolute',
+      top: '50%',
+      left: '50%',
+      transform: 'translate(-50%, -50%)',
+      width: '80rem',
+      height: '50rem',
+      border: '2px solid #000',
+      boxShadow: 24
+    };
+  }
 
   return (
     <div>
@@ -56,12 +68,13 @@ export default function MediaModal({data, lng, btnText}) {
         aria-describedby="modal-modal-description"
       >
         {data?.youtube_featured_image_url || data?.featured_video_url ? 
-        <Box sx={videoStyle}>
+        <div style={videoStyle}>
           <ReactPlayer url={data?.featured_video_url || videoRoot + data?.youtube_video_id} loop={true} volume={0} muted={true} width="100%" height="100%" controls={true}></ReactPlayer>
-        </Box> : 
-        <Box sx={imgStyle}>
+        </div> : 
+        <div style={imgStyle}>
           <img src={data?.screenshot_url}></img>
-        </Box>}
+        </div>
+        }
       </Modal>
     </div>
   );
