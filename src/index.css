@@ -1517,3 +1517,32 @@
   outline: 0;
   box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
 }
+
+/**
+ * ==============================================
+ * Dot Carousel (Loading Fetch)
+ * ==============================================
+*/
+ .dot-carousel {
+  position: relative;
+  left: -9999px;
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #9880ff;
+  color: #9880ff;
+  box-shadow: 9984px 0 0 0 #9880ff, 9999px 0 0 0 #9880ff, 10014px 0 0 0 #9880ff;
+  animation: dot-carousel 1.5s infinite linear;
+}
+
+@keyframes dot-carousel {
+  0% {
+    box-shadow: 9984px 0 0 -1px #4c4b4f, 9999px 0 0 1px #4c4b4f, 10014px 0 0 -1px #4c4b4f;
+  }
+  50% {
+    box-shadow: 10014px 0 0 -1px #4c4b4f, 9984px 0 0 -1px #4c4b4f, 9999px 0 0 1px #4c4b4f;
+  }
+  100% {
+    box-shadow: 9999px 0 0 1px #4c4b4f, 10014px 0 0 -1px #4c4b4f, 9984px 0 0 -1px #4c4b4f;
+  }
+}

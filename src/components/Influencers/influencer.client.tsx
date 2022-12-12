@@ -5,7 +5,8 @@ import Modal from "../Elements/Modal.client"
 import Banner from "../Elements/Banner.client"
 
 import {fetchSync} from '@shopify/hydrogen';
-import {Suspense} from 'react';
+
+import { LoadingFetch } from '../Global/Loadings.client';
 
 let lngflag = false;
 import '../../i18n';
@@ -13,8 +14,9 @@ import { useTranslation } from 'react-i18next';
 
 export default function Influencer({ lng, handle }) {
   const [ t, i18n ] = useTranslation();
-  const [page, setPage] = React.useState(Number(handle));
+  const [page, setPage] = React.useState(Number(handle) || 1);
   const [filter, setFilter] = React.useState({active: false, data: ''})
+  let [loading, setLoading] = React.useState(false);
 
   console.log("WebHook de Filter:")
   console.log(filter)
@@ -53,12 +55,16 @@ export default function Influencer({ lng, handle }) {
           setFilter({...filter, active: false, data: ''})
         } else {
           console.log("Es un evento de presionar enter")
+          setLoading(true)
           let aux = {...listQuery, search: e.target.value}
           console.log(aux)
           let auxParams = '?' + new URLSearchParams(aux).toString();
           fetch(url+auxParams)
           .then(res => res.json())
-          .then(json => setFilter({...filter, active: true, data: json.data}))
+          .then(json => {
+            setLoading(false)
+            setFilter({...filter, active: true, data: json.data})
+          })
           .catch(err => console.log(err))
         }
       }
@@ -77,13 +83,13 @@ export default function Influencer({ lng, handle }) {
         <input onKeyUp={searchHandle} type="text" style={{margin: "auto", display: "block", backgroundColor: "#f7f8fa", width: "25rem", paddingLeft: "2rem"}}/>
         <i style={{position: "absolute", left: "47.5rem", top: "5px"}} className="fa-solid fa-magnifying-glass"></i>
       </div>
-      <Suspense fallback="Loading...">
+      {loading ? <LoadingFetch />: 
         <div className="influencers_wrapper">
           {filter.active ? (filter.data?.items || []).map((influencer, index) => (<Modal key={index} influencer={influencer} index={index}></Modal>)) : (data?.items || []).map((influencer, index) => (<Modal key={index} influencer={influencer} index={index}></Modal>)) }
         </div>
-      </Suspense>
+      }
       <div className='influencers_Pagination_Div'>
-        <Pagination count={totalPages} page={page} color="secondary" showFirstButton showLastButton onChange={handleChange} />
+        <Pagination count={totalPages} page={page} showFirstButton showLastButton onChange={handleChange} />
       </div>
     </div>
   )
