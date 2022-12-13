@@ -1003,7 +1003,7 @@
 .Boutiques_card_wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  padding: 0 1.3rem;
 }
 
 .Boutiques_cards_container {
@@ -1018,6 +1018,7 @@
 
 .Boutiques_cards_container:hover {
   box-shadow: 0 0 18px -5px #000000bf;
+  cursor: pointer;
 }
 
 .Boutiques_cards_Title {
@@ -1037,6 +1038,7 @@
 
 .Boutique_Modal_Slider_Div {
   width: 45rem;
+  padding: 1rem;
 }
 
 .Boutique_Modal_Information_Div {
@@ -1050,7 +1052,6 @@
 .Boutique_Modal_City_Owner {
   display: flex;
   flex-direction: column;
-  margin-top: 2rem;
   align-items: center;
 }
 
@@ -1073,25 +1074,15 @@
   color: white;
   background-color: black;
   align-self: center;
-  align-content: center;
   justify-content: center;
   align-items: center;
+  margin: 1rem;
 }
 
 .Boutique_Modal_Location_Div {
   width: 50rem;
-  height: 45rem;
-  margin-left: 3rem;
-}
-
-/* Banner */
-
-.Banner_Div {
-
-}
-
-.Banner_Div video {
-  
+  height: 48rem;
+  margin: 1rem;
 }
 
 /* Bundle Childs */
