@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import { AddToCartButton, useCart } from "@shopify/hydrogen";
@@ -13,7 +12,8 @@ const style = {
   bgcolor: 'background.paper',
   border: '2px solid #000',
   boxShadow: 24,
-  p: 4,
+  padding: 4,
+  backgroundColor: "white"
 };
 //@ts-ignore
 export default function cartModal({ product, variant, qty, shop }) {
@@ -58,7 +58,7 @@ export default function cartModal({ product, variant, qty, shop }) {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <div style={style}>
           <div className='Product_Modal_Main_Div'>
             {/* Parte Izquierda */}
             <div className='Product_Modal_Left_Div'>
@@ -103,7 +103,7 @@ export default function cartModal({ product, variant, qty, shop }) {
               </div>
             </div>
           </div>
-        </Box>
+        </div>
       </Modal>
     </div>
   );

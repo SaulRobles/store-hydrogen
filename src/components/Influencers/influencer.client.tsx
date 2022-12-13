@@ -24,7 +24,7 @@ export default function Influencer({ lng, handle }) {
 
   useEffect(() => {
     if(data.data === '') {
-      getData(1)
+      getData(page)
     }
   }, []);
 
