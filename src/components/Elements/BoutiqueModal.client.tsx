@@ -26,16 +26,6 @@ export default function BasicModal({boutique, lng}) {
     descriptionLanguage = boutique?.boutique?.profile?.description.split('|')
   }
 
-  //console.log(boutique)
-
-  const settings = {
-    dots: true,
-    infinite: boutique?.boutique?.gallery?.length > 2 ? true : false,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
-
   return (
     <div>
       <div onClick={handleOpen} className="Boutiques_cards_container">
@@ -56,7 +46,7 @@ export default function BasicModal({boutique, lng}) {
             <div>
               {/* Slider */}
               <div className='Boutique_Modal_Slider_Div'>
-                <Carousel slidesToShow={1}>
+                <Carousel slidesToShow={1} draggable arrows={true}>
                   {boutique?.boutique?.gallery && boutique?.boutique?.gallery?.map((gallery, index) => {
                     return(
                       <div key={index} className='Boutique_Modal_Slider_Image'>
