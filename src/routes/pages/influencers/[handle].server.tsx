@@ -7,9 +7,17 @@ export default function Boutiques() {
   let {language} = useSession()
   const {handle} = useRouteParams();
 
+  let page;
+  const handleSplit = handle.split('page=')
+  if(handleSplit.length === 2) {
+    page = handleSplit[1]
+  } else {
+    page = handle
+  }
+
   return (
     <Layout>
-      <InfluencerData lng={language} handle={handle}></InfluencerData>
+      <InfluencerData lng={language} handle={page}></InfluencerData>
     </Layout>
   )
 }

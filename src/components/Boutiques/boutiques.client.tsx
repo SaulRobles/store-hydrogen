@@ -1,44 +1,63 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import Pagination from '@mui/material/Pagination';
 
 import Modal from "../Elements/BoutiqueModal.client"
 import Banner from "../Elements/Banner.client"
 
-import {fetchSync} from '@shopify/hydrogen';
-import {Suspense} from 'react';
+import { LoadingFetch } from '../Global/Loadings.client';
 
 let lngflag = false;
 import '../../i18n';
 import { useTranslation } from 'react-i18next';
 
-export default function Boutiques({lng, handle}) {
+export default function Boutiques({ lng, handle }) {
   const [ t, i18n ] = useTranslation();
   const [page, setPage] = React.useState(Number(handle) || 1);
+  const [data, setData] = React.useState({data: ''})
+  let [loading, setLoading] = React.useState(false);
 
   if(!lngflag) {
     i18n.changeLanguage(lng)
     lngflag = true;
   }
 
+  useEffect(() => {
+    if(data.data === '') {
+      getData(page)
+    }
+  }, []);
+
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
+    window.history.replaceState({}, "", `/pages/boutiques/page=${value}`);
+    getData(value);
   };
-
-  const listQuery = {
-    page: page || 1,
-    limit: 20,
-    search: '',
-    sort: 'asc'
-  }
 
   const root = 'https://sys.sbc.mx/'
   const api = 'api/v2/shop/boutique/list'
-  const params = '?'+new URLSearchParams(listQuery).toString();
   const url = root + api
 
-  const {data} = fetchSync(url+params).json();
+  const totalPages = (Math.ceil(data?.data?.total / data?.data?.per_page) || 1)
 
-  const totalPages = Math.ceil(data.total / data.per_page)
+  function getData(page = 1) {
+    const listQuery = {
+      page: page || 1,
+      limit: 24,
+      search: '',
+      sort: 'asc'
+    }
+    const params = '?'+ new URLSearchParams(listQuery).toString();
+
+    setLoading(true);
+    fetch(url+params)
+    .then(res => res.json())
+    .then(json => {
+      setData({...data, data: json.data})
+      setLoading(false)
+    })
+    .catch(err => console.log(err))
+  }
 
   return(
     <>
@@ -48,15 +67,15 @@ export default function Boutiques({lng, handle}) {
       <div className='boutique_Subtitle_Div'>
         <h3 className='Boutique_Subtitle'>{t("boutiques.subtitle")}</h3>
       </div>
-      <Suspense fallback="Loading...">
+      {loading ? <LoadingFetch />: 
         <div className="Boutiques_card_wrapper">
-          {data && data.items?.map((boutique, index) => {
+          {(data?.data?.items || []).map((boutique, index) => {
             if(boutique.status !== "Empty") return(<Modal key={index} boutique={boutique} lng={lng} />)
           })}
         </div>
-      </Suspense>
+      }
       <div className='influencers_Pagination_Div'>
-        <Pagination count={totalPages} page={page} color="secondary" showFirstButton showLastButton onChange={handleChange} />
+        <Pagination count={totalPages} page={page} showFirstButton showLastButton onChange={handleChange} />
       </div>
     </>
   )

@@ -30,6 +30,7 @@ export default function Influencer({ lng, handle }) {
 
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
+    window.history.replaceState({}, "", `/pages/influencers/page=${value}`);
     getData(value);
   };
 
