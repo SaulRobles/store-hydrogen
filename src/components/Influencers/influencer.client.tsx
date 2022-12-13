@@ -1,10 +1,9 @@
 import * as React from 'react';
+import { useEffect } from 'react';
 import Pagination from '@mui/material/Pagination';
 
 import Modal from "../Elements/Modal.client"
 import Banner from "../Elements/Banner.client"
-
-import {fetchSync} from '@shopify/hydrogen';
 
 import { LoadingFetch } from '../Global/Loadings.client';
 
@@ -15,36 +14,30 @@ import { useTranslation } from 'react-i18next';
 export default function Influencer({ lng, handle }) {
   const [ t, i18n ] = useTranslation();
   const [page, setPage] = React.useState(Number(handle) || 1);
-  const [filter, setFilter] = React.useState({active: false, data: ''})
+  const [data, setData] = React.useState({data: ''})
   let [loading, setLoading] = React.useState(false);
-
-  console.log("WebHook de Filter:")
-  console.log(filter)
 
   if(!lngflag) {
     i18n.changeLanguage(lng)
     lngflag = true;
   }
 
+  useEffect(() => {
+    if(data.data === '') {
+      getData(1)
+    }
+  }, []);
+
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setPage(value);
+    getData(value);
   };
-
-  const listQuery = {
-    page: page || 1,
-    limit: 12,
-    search: '',
-    sort: 'asc'
-  }
 
   const root = 'https://sys.sbc.mx/'
   const api = 'api/v2/shop/influencer/list'
-  const params = '?'+ new URLSearchParams(listQuery).toString();
   const url = root + api
 
-  const {data} = fetchSync(url+params).json();
-
-  const totalPages = Math.ceil(data.total / data.per_page)
+  const totalPages = (Math.ceil(data?.data?.total / data?.data?.per_page) || 1)
 
   const banner = `https://storage.googleapis.com/shop-backend/shopify/influencers/banner_web_${lng}.mp4`
 
@@ -52,23 +45,32 @@ export default function Influencer({ lng, handle }) {
     if(e.type === 'keyup') {
       if(e.key === 'Enter') {
         if(e.target.value === '') {
-          setFilter({...filter, active: false, data: ''})
+          getData()
         } else {
-          console.log("Es un evento de presionar enter")
-          setLoading(true)
-          let aux = {...listQuery, search: e.target.value}
-          console.log(aux)
-          let auxParams = '?' + new URLSearchParams(aux).toString();
-          fetch(url+auxParams)
-          .then(res => res.json())
-          .then(json => {
-            setLoading(false)
-            setFilter({...filter, active: true, data: json.data})
-          })
-          .catch(err => console.log(err))
+          setPage(1)
+          getData(1, e.target.value)
         }
       }
     }
+  }
+
+  function getData(page = 1, search = '') {
+    const listQuery = {
+      page: page || 1,
+      limit: 12,
+      search: search,
+      sort: 'asc'
+    }
+    const params = '?'+ new URLSearchParams(listQuery).toString();
+
+    setLoading(true);
+    fetch(url+params)
+    .then(res => res.json())
+    .then(json => {
+      setData({...data, data: json.data})
+      setLoading(false)
+    })
+    .catch(err => console.log(err))
   }
 
   return (
@@ -85,7 +87,7 @@ export default function Influencer({ lng, handle }) {
       </div>
       {loading ? <LoadingFetch />: 
         <div className="influencers_wrapper">
-          {filter.active ? (filter.data?.items || []).map((influencer, index) => (<Modal key={index} influencer={influencer} index={index}></Modal>)) : (data?.items || []).map((influencer, index) => (<Modal key={index} influencer={influencer} index={index}></Modal>)) }
+          {(data?.data?.items || []).map((influencer, index) => (<Modal key={index} influencer={influencer} index={index}></Modal>))}
         </div>
       }
       <div className='influencers_Pagination_Div'>
