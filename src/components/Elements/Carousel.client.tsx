@@ -33,7 +33,7 @@ const productCarousel: React.FC = ({images, main, multipleProducts}) => {
     <Carousel slidesToShow={showImages} draggable={true} dots={false} arrows={true}>
       {!multipleProducts && images?.map((img, index) => (      
           <div key={index} className="Carousel_Card">
-            <img onClick={main} src={img.url} alt={img.altText} />
+            <img onClick={main} src={img?.url} alt={img?.altText} />
           </div> 
         ))
       }
@@ -41,10 +41,10 @@ const productCarousel: React.FC = ({images, main, multipleProducts}) => {
       {multipleProducts && products?.map((ele, index) => (
         <div key={index} className="Carousel_Img_Div">
           <a style={{display: "flex", flexDirection: "column", alignItems: "center"}} href={ele.onlineStoreUrl}>
-            <img src={ele.images.nodes[0].url} alt={ele.images.nodes[0].altText} />
+            <img src={ele?.images?.nodes[0]?.url} alt={ele?.images?.nodes[0]?.altText} />
             <div className="Carousel_Product_Text">
               <h2 style={{fontSize: "12px", cursor: "pointer", fontFamily: "Hind,sans-serif"}}>{ele.title}</h2>
-              <p>${ele.priceRange.maxVariantPrice.amount} {ele.priceRange.maxVariantPrice.currencyCode}</p>
+              <p>${ele?.priceRange?.maxVariantPrice?.amount} {ele?.priceRange?.maxVariantPrice?.currencyCode}</p>
             </div>
           </a>
         </div>

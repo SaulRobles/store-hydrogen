@@ -36,9 +36,10 @@ export default function BasicModal({influencer, index}) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-        <div>
-          <Carousel data={influencer}></Carousel>
-        </div>
+          <h2 style={{color: "white", textAlign: "center", fontSize: "2rem", letterSpacing: ".3rem", fontWeight: "500", fontFamily: "Hind,sans-serif"}}>{influencer.influencer.profile?influencer.influencer.profile.nickname:''}</h2>
+          <div>
+            <Carousel data={influencer}></Carousel>
+          </div>
         </Box>
       </Modal>
     </div>

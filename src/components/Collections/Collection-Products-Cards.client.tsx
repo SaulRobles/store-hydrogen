@@ -47,10 +47,10 @@ export default function CollectionCards({ collection }){
           <div key={index} className="card_container">
             <div  className="card_information">
               <div>
-                <a href={product.onlineStoreUrl}><img src={product.images.nodes[1].url} alt={product.images.nodes[1].altText} /></a>
-                <a style={{position: "absolute", top: "0"}} className="card_image" href={product.onlineStoreUrl}><img src={product.images.nodes[0].url} alt={product.images.nodes[0].altText} /></a> 
+                <a href={product?.onlineStoreUrl}><img src={product?.images?.nodes[1]?.url} alt={product.images.nodes[1]?.altText} /></a>
+                <a style={{position: "absolute", top: "0"}} className="card_image" href={product?.onlineStoreUrl}><img src={product?.images?.nodes[0]?.url} alt={product?.images?.nodes[0]?.altText} /></a> 
               </div>
-              <a href={product.onlineStoreUrl} className="card_text">{product.title}</a>
+              <a href={product?.onlineStoreUrl} className="card_text">{product?.title}</a>
               <span style={{marginBottom: "1rem"}}>{product.priceRange.maxVariantPrice.currencyCode} {product.priceRange.maxVariantPrice.amount}</span>
             </div>
             <div className='tags_div'>

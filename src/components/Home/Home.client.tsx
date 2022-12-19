@@ -1,5 +1,6 @@
 import {ProductCarousel, CollectionCarousel} from "./Home_Carousel.client";
 import Videos from "./Home_Videos.client"
+import BannersCarousel from "./Home_Banners.client";
 
 let lngflag = false;
 import '../../i18n';
@@ -24,6 +25,10 @@ export default function Home({ collection, nuevos, destacados, wanted, lng }){
 
   return (
     <div>
+      {/* International shipping warning */}
+      {lng === 'en' ? <img style={{cursor: "pointer"}} onClick={(e) => e.target.remove()} src="https://cdn.shopify.com/s/files/1/0300/5926/6141/files/international-shipping-banner-en.png?v=1666715663"/> : <img style={{cursor: "pointer"}} onClick={(e) => e.target.remove()} src="https://cdn.shopify.com/s/files/1/0300/5926/6141/files/international-shipping-banner-es.png?v=1666715655"/>}
+      {/* Banners */}
+      <BannersCarousel lng={lng}></BannersCarousel>
       {/* Lo mas nuevo */}
       <hr className="hr_divider"/>
       <a className="Home_Anchoar_Title" href={nuevosUrl} ><h2>{t("home.new_releases")}</h2></a>

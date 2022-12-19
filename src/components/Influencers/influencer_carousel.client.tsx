@@ -3,12 +3,9 @@ import { Carousel } from 'antd';
 import ReactPlayer from 'react-player';
 
 const App: React.FC = ({data}) => {
-  const onChange = (currentSlide: number) => {
-    /* console.log(currentSlide); */
-  };
 
   return (
-    <Carousel afterChange={onChange} slidesToShow={1} draggable={true} arrows={true}>
+    <Carousel slidesToShow={1} draggable={true} arrows={true}>
       {data.influencer?.gallery?.map((element, index: Key) => {
         return element.type === 'image' ? 
         <div className='Influencer_Slider_Div' key={index}><img className='Influencer_Slider_item' src={element.url}/></div> : 

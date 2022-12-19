@@ -57,11 +57,12 @@ export default function Product({ handle }){
         }
 
         metafields(identifiers: 
-        [{namespace: "store", key: "template_sale"}, 
-         {namespace: "store", key: "variant_items"}, 
-         {namespace: "store", key: "sizechart"}, 
+        [{namespace: "store", key: "template_sale"},
+         {namespace: "store", key: "variant_items"},
+         {namespace: "store", key: "sizechart"},
          {namespace: "store", key: "videoId"},
-         {namespace: "store", key: "published_at"}])
+         {namespace: "store", key: "published_at"},
+         {namespace: "store", key: "extended_items"}])
         {
           key
           type

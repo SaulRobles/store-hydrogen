@@ -40,7 +40,8 @@ export default function Influencer({ lng, handle }) {
 
   const totalPages = (Math.ceil(data?.data?.total / data?.data?.per_page) || 1)
 
-  const banner = `https://storage.googleapis.com/shop-backend/shopify/influencers/banner_web_${lng}.mp4`
+  const bannerEN = "https://storage.googleapis.com/shop-backend/shopify/influencers/web%20ingles%20-%20INFLUENCERS%20MaribelG.mp4"
+  const bannerES = "https://storage.googleapis.com/shop-backend/shopify/influencers/web%20espa%C3%B1ol%20-%20INFLUENCERS%20MaribelG.mp4"
 
   function searchHandle(e) {
     if(e.type === 'keyup') {
@@ -76,7 +77,7 @@ export default function Influencer({ lng, handle }) {
 
   return (
     <div>
-      <Banner src={banner} />
+      {lng === 'en' ? <Banner src={bannerEN} /> : <Banner src={bannerES} />}
       <div className='influencers_title_wrapper'>
         <h1 className='influencers_title'>{t("influencers.title")}</h1>
         <span className='influencers_subtitle'>{t("influencers.subtitle")}</span>
