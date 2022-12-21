@@ -19,22 +19,32 @@ export const BannerCarousel = ({banners}) => {
 }
 
 /* Main Carousel - Carousel de productos */
-const productCarousel: React.FC = ({images, main, multipleProducts}) => {
+const productCarousel: React.FC = ({images, hook, main, multipleProducts, extended=''}) => {
   let products;
   let showImages;
+  let ExtendedArrayImg = [];
   if(multipleProducts) {
-    products = [...images]
+    /* products = [...images] */
     showImages = 4;
   } else {
     images?.length > 5 ? showImages = 6 : showImages = images?.length
   }
 
+  if(extended) {
+    let color = images[0]?.url?.split("/products/")
+    color = color[1].split("_")
+    let search = '';
+    hook?.color?.toLowerCase() === 'rosé' ? search = 'rose' : search = hook?.color?.toLowerCase()
+    ExtendedArrayImg = images?.filter((obj) => obj.url?.includes(search))
+    ExtendedArrayImg?.length > 5 ? showImages = 6 : showImages = ExtendedArrayImg?.length
+  }
+
   return (
     <Carousel slidesToShow={showImages} draggable={true} dots={false} arrows={true}>
-      {!multipleProducts && images?.map((img, index) => (      
+      {!multipleProducts && (extended ? ExtendedArrayImg : images).map((img, index) => (
           <div key={index} className="Carousel_Card">
             <img onClick={main} src={img?.url} alt={img?.altText} />
-          </div> 
+          </div>
         ))
       }
 

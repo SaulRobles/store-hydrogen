@@ -9,6 +9,7 @@ export default function Product({ handle }){
   const SHOP_QUERY = gql`
     query layout {
       product(handle: ${prod}) {
+        handle
         title
         description
         descriptionHtml

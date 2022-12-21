@@ -25,7 +25,7 @@ export default function cartModal({ product, variant, qty, shop }) {
   let [disableCheckButton, setdisableCheckButton] = React.useState(false)
   
   let cart = useCart();
-  //console.log(cart)
+  console.log(cart)
 
   const { checkoutUrl, cost, lines  } = useCart();
 

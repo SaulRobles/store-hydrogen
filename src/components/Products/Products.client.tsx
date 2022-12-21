@@ -7,6 +7,7 @@ import Tags from "./Products-Tags.client"
 import Sizechart from "./Product-Sizechart-Modal.client"
 import AssistenceButton from "./Product-Assistance-Button.client"
 import Calculator from "./Product-Calculator.client"
+import TemplateExtended from "./Template-Extended.client"
 
 /* import ProductWidget from "./LetMeKnow-Widget.client" */
 
@@ -16,6 +17,7 @@ let lngflag = false;
 
 export default function Product({ sizechart, product, childrens, isBundle, shop, lng, isExtended, extended }) {
   const [ t, i18n ] = useTranslation()
+  const [ Active, setActive] = React.useState({active: product, sizes: '', option: '', variant: '', color: product?.options[1]?.values[0]})
   let main_img_ref = React.useRef(null)
   let calculator = null;
 
@@ -23,6 +25,20 @@ export default function Product({ sizechart, product, childrens, isBundle, shop,
     i18n.changeLanguage(lng)
     lngflag = true;
   }
+
+  /* ===== Carousel ===== */
+  let ExtendedArrayImg
+
+  if(isExtended) {
+    let images = Active?.active?.images?.nodes;
+    let color = images[0]?.url?.split("/products/")
+    color = color[1].split("_")
+    let search = '';
+    Active?.color?.toLowerCase() === 'rosé' ? search = 'rose' : search = Active?.color?.toLowerCase()
+    ExtendedArrayImg = images?.filter((obj) => obj.url?.includes(search))
+  }
+
+  /* ==================== */
 
   if(product?.metafields[2]?.value) calculator = product?.metafields[2]?.value;
 
@@ -39,8 +55,18 @@ export default function Product({ sizechart, product, childrens, isBundle, shop,
 
   /* console.log(product)
   console.log(JSON.parse(product?.metafields[5]?.value)) */
-  console.log(isExtended)
-  console.log(extended)
+  /* console.log(isExtended)
+  console.log(extended) */
+
+  /* ===== Extended ===== */
+  let ExtendedItems;
+  if(extended){
+    ExtendedItems = Object.keys(extended).map((handle) => product?.handle !== handle ? extended[handle]?.data?.product : null).filter((val) => val !== null)
+
+    /* console.log(ExtendedItems) */
+  }
+  
+  /* ==================== */
 
   /* Funcion para asignar la imagen principal del carrousel */
   function Set_Main_Img(e) {
@@ -55,8 +81,8 @@ export default function Product({ sizechart, product, childrens, isBundle, shop,
         <div className="Product_Main_Div">
           <div className="Product_Information_Container">  {/* Imagenes e Informacion del producto */}
             <div className="Product_Information_Image"> {/* Imagenes */}
-              <img ref={main_img_ref} src={product?.images?.nodes[0]?.url || ""} alt="" />
-              <Carousel images={product?.images?.nodes} main={Set_Main_Img} multipleProducts={false}></Carousel>
+              <img id="Product_Carousel_Main_Img" ref={main_img_ref} src={isExtended ? ExtendedArrayImg[0]?.url : Active?.active?.images?.nodes[0]?.url || ""} alt="" />
+              <Carousel images={Active?.active?.images?.nodes} hook={Active} main={Set_Main_Img} multipleProducts={false} extended={isExtended}></Carousel>
             </div> 
             <div className="Product_Information_Data"> { /* Informacion del producto */ }
               { /* Informacion del producto */ }
@@ -71,7 +97,11 @@ export default function Product({ sizechart, product, childrens, isBundle, shop,
                   return (<ClassicTemplate product={childrens[child].data.product} isBundle={isBundle} shop={shop} lng={lng}></ClassicTemplate>)
                 })
               }
-              {!isBundle &&
+              {
+                isExtended &&
+                <TemplateExtended hook={Active} hookFunction={setActive} product={product} extendedItems={ExtendedItems} shop={shop}></TemplateExtended>
+              }
+              {!isBundle && !isExtended &&
                 <ClassicTemplate product={product} isBundle={isBundle} shop={shop} lng={lng}></ClassicTemplate>
               }
               {/* Template End */}

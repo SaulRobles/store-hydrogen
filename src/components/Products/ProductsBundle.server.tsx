@@ -30,6 +30,7 @@ export default function Bundle({ product, shop }) {
     const CHILD_QUERY = gql`
       query layout {
         product(handle: ${prod}) {
+          handle
           title
           totalInventory
 
@@ -87,6 +88,7 @@ export default function Bundle({ product, shop }) {
     const EXTENDED_QUERY = gql`
       query layout {
         product(handle: ${prod}) {
+          handle
           title
           totalInventory
 
@@ -177,7 +179,7 @@ export default function Bundle({ product, shop }) {
           })
           Object.keys(obj).map(extended => {
             ExtendedItems[extended] = useShopQuery({
-              query: BundleQuery(extended),
+              query: ExtendedQuery(extended),
               cache: CacheLong(),
             });
           })
