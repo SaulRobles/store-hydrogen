@@ -21,6 +21,19 @@
       "calculate_button": "CALCULAR MI TALLA",
       "last_comment": "Esta talla es aproximada, si deseas consultar a un asesor, comunicate al",
       "size_error": "Oops! Parece que estamos teniendo problemas para procesar tu petición en este momento. Comunícate con nuestro equipo de servicio al cliente para que podamos ayudarte de la mejor manera posible."
+    },
+    "modal": {
+      "added": "Agregado al carrito con éxito!",
+      "size": "Talla: ",
+      "color": "Color: ",
+      "qty": "Cantidad: ",
+      "cart_qty_1": "Hay ",
+      "cart_qty_2": " elementos en su carrito",
+      "continue_button": "SEGUIR COMPRANDO",
+      "view_cart_button": "VER EL CARRITO",
+      "terms_conditions": "Acepto los términos y condiciones.",
+      "assistance": "He recibido asesoramiento con anterioridad.",
+      "checkout_button": "PASAR POR LA CAJA"
     }
   },
   "home": {

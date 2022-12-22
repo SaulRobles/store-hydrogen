@@ -2,7 +2,7 @@ import { useShopQuery, CacheLong, gql, useSession } from "@shopify/hydrogen";
 import Template from "./Products.client"
 import { fetchSync } from "@shopify/hydrogen";
 
-export default function Bundle({ product, shop }) {
+export default function Bundle({ product }) {
   let isBundle = false /* Has children elements (bundle) flag */
   let isExtended = false /* Has Extended elements flag */
   let ChildItems = {}
@@ -191,6 +191,6 @@ export default function Bundle({ product, shop }) {
   setChildrens()
 
   return (
-    <Template sizechart={data} product={product} childrens={ChildItems} isBundle={isBundle} extended={ExtendedItems} isExtended={isExtended} shop={shop.data.cart} lng={language || 'en'}/>
+    <Template sizechart={data} product={product} childrens={ChildItems} isBundle={isBundle} extended={ExtendedItems} isExtended={isExtended} lng={language || 'en'}/>
   )
 }

@@ -6,7 +6,7 @@ import '../../i18n';
 import { useTranslation } from 'react-i18next';
 let lngflag = false;
 
-export default function Child({ product, isBundle, shop, lng }) {
+export default function Child({ product, isBundle, lng }) {
   const [ t, i18n ] = useTranslation();
   const [information, setInformation] = React.useState({});
   const [qty, setQty] = React.useState({value: 1})
@@ -137,7 +137,7 @@ export default function Child({ product, isBundle, shop, lng }) {
             <button onClick={set_Qty} value="plus">+</button>
           </div>
           <div className="Product_Buy_Button"> {/* Add to Cart */}
-            <Modal product={product} qty={qty} variant={variant} shop={shop}></Modal>
+            <Modal product={product} qty={qty} variant={variant}></Modal>
           </div>
         </div>
       }

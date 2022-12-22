@@ -510,6 +510,17 @@
 
 /* Product Modal */
 
+.Product_Modal_Wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 2px solid #000;
+  box-shadow: 24px;
+  padding: 2rem;
+}
+
 .Product_Modal_Main_Div {
   display: flex;
 }
@@ -535,6 +546,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .Product_Modal_Cart_Information {
@@ -547,6 +559,8 @@
   display: flex;
   flex-direction: column;
   align-content: center;
+  width: 50%;
+  align-self: center;
 }
 
 .Product_Modal_Buttons {
@@ -554,6 +568,7 @@
   color: #fff !important;
   border: 2px solid #252525 !important;
   margin: 1rem 0 !important;
+  width: 100%;
 }
 
 .Product_Modal_Buttons:hover {

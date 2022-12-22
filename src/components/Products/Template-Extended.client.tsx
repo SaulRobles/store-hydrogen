@@ -2,7 +2,7 @@ import { ProductOptionsProvider } from "@shopify/hydrogen";
 import React, { useEffect } from 'react';
 import Modal from "../Elements/AddProductModal.client"
 
-export default function Extended({ hook, hookFunction, product, extendedItems, shop }) {
+export default function Extended({ hook, hookFunction, product, extendedItems }) {
   const [qty, setQty] = React.useState({value: 1})
   /* console.log(hook) */
 
@@ -141,7 +141,7 @@ export default function Extended({ hook, hookFunction, product, extendedItems, s
             <button onClick={set_Qty} value="plus">+</button>
           </div>
           <div className="Product_Buy_Button"> {/* Add to Cart */}
-            <Modal product={product} qty={qty} variant={hook?.variant} shop={shop}></Modal>
+            <Modal product={hook?.active} qty={qty} variant={hook?.variant}></Modal>
           </div>
         </div>
       }

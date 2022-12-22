@@ -15,7 +15,7 @@ import '../../i18n';
 import { useTranslation } from 'react-i18next';
 let lngflag = false;
 
-export default function Product({ sizechart, product, childrens, isBundle, shop, lng, isExtended, extended }) {
+export default function Product({ sizechart, product, childrens, isBundle, lng, isExtended, extended }) {
   const [ t, i18n ] = useTranslation()
   const [ Active, setActive] = React.useState({active: product, sizes: '', option: '', variant: '', color: product?.options[1]?.values[0]})
   let main_img_ref = React.useRef(null)
@@ -94,15 +94,15 @@ export default function Product({ sizechart, product, childrens, isBundle, shop,
               {/* Template Start */}
               {isBundle &&
                 Object.keys(childrens).map((child) => {
-                  return (<ClassicTemplate product={childrens[child].data.product} isBundle={isBundle} shop={shop} lng={lng}></ClassicTemplate>)
+                  return (<ClassicTemplate product={childrens[child].data.product} isBundle={isBundle} lng={lng}></ClassicTemplate>)
                 })
               }
               {
                 isExtended &&
-                <TemplateExtended hook={Active} hookFunction={setActive} product={product} extendedItems={ExtendedItems} shop={shop}></TemplateExtended>
+                <TemplateExtended hook={Active} hookFunction={setActive} product={product} extendedItems={ExtendedItems}></TemplateExtended>
               }
               {!isBundle && !isExtended &&
-                <ClassicTemplate product={product} isBundle={isBundle} shop={shop} lng={lng}></ClassicTemplate>
+                <ClassicTemplate product={product} isBundle={isBundle} lng={lng}></ClassicTemplate>
               }
               {/* Template End */}
               {/* Sizechart */}

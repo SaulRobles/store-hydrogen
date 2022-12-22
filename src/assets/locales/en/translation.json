@@ -21,6 +21,19 @@
       "calculate_button": "GET MY SIZE",
       "last_comment": "This size is approximate, if you want to consult with an advisor, get in touch here: ",
       "size_error": "Oops! It looks like we are having trouble processing your request at this moment. Get in touch with our customer service team so we can best help you out."
+    },
+    "modal": {
+      "added": "Added to cart successfully!",
+      "size": "Size: ",
+      "color": "Color: ",
+      "qty": "QTY: ",
+      "cart_qty_1": "There are ",
+      "cart_qty_2": " items in your cart",
+      "continue_button": "CONTINUE SHOPPING",
+      "view_cart_button": "VIEW CART",
+      "terms_conditions": "I agree with the terms and conditions",
+      "assistance": "I have received assistance before",
+      "checkout_button": "PROCEED TO CHECKOUT"
     }
   },
   "home": {

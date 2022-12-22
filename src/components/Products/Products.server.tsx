@@ -103,30 +103,9 @@ export default function Product({ handle }){
     cache: CacheLong(),
   });
 
-  const SHOP_DATA_QUERY = gql`
-    query layout {
-      
-      cart(id: "gid://shopify/Cart/897abee5fcac94646ea56470174e0e42") {
-        totalQuantity
-        cost {
-          totalAmount {
-            amount
-            currencyCode
-          }
-        }
-        checkoutUrl
-      }
-    }
-  `
-
-  const shop = useShopQuery({
-    query: SHOP_DATA_QUERY,
-    cache: CacheLong(),
-  });
-
   return(
     <Suspense fallback={null}>
-      <Bundlequery product={product} shop={shop}></Bundlequery>
+      <Bundlequery product={product}></Bundlequery>
     </Suspense>
   )
 }
