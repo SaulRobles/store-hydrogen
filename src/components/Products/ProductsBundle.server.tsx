@@ -10,7 +10,7 @@ export default function Bundle({ product }) {
   let {language} = useSession()
 
   /* ======== Guia de Tallas ======= */
-  const apiRoot = "https://sys.sbc.mx/";
+  const apiRoot = /* "https://sys.sbc.mx/"; */ 'http://192.168.1.22:3000/'
   const api = apiRoot + "api";
   const sizeChartTitle = product?.metafields[2]?.value || '';
   const sizeChartFind = `/v2/shop/size/chart/findBySlug?slug=${sizeChartTitle}`;

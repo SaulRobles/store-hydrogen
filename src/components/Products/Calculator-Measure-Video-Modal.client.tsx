@@ -33,7 +33,7 @@ export default function measureVideo({lng, videoID}) {
     lngflag = true;
   }
 
-  const root = 'https://sys.sbc.mx/';
+  const root = /* 'https://sys.sbc.mx/'; */ 'http://192.168.1.22:3000/'
   const api = 'api/v2/shop/video';
   const url = root + api;
 

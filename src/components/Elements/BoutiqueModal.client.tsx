@@ -126,7 +126,7 @@ export function MeasureModal({ data, lng }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const root = 'https://sys.sbc.mx/';
+  const root = /* 'https://sys.sbc.mx/'; */'http://192.168.1.22:3000/'
 
   let title = `description_${lng}`
   let img = `featured_img_${lng}`
